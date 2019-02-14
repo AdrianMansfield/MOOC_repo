@@ -1,11 +1,11 @@
 CREATE TYPE child_entity_status AS ENUM (
-  'not started',
+  'not_started',
   'finished'
   );
 
 CREATE TYPE parent_entity_status as ENUM (
-  'not started',
-  'in progress',
+  'not_started',
+  'in_progress',
   'finished'
   );
 
