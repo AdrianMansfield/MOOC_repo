@@ -1,24 +1,18 @@
 package com.project.mooc.moocproject.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
-@Data
 @Entity
 @Table(name = "lessons_items")
 @NoArgsConstructor
 @AllArgsConstructor
-public class LessonsItem implements Serializable {
-    @Id
-    @SequenceGenerator(name = "lesson_item_sequence", sequenceName = "lessons_items_id_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lesson_item_sequence")
-    private Long id;
+@Data
+@Setter
+public class LessonsItem extends AbstractEntity {
 
     @Column(name = "name")
     private String name;
@@ -32,15 +26,8 @@ public class LessonsItem implements Serializable {
     @Column(name = "title_img")
     private String title_img_link;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
-
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "users_lesson_items",
-            joinColumns = @JoinColumn(name = "lesson_item_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> attendedUserList;
 }

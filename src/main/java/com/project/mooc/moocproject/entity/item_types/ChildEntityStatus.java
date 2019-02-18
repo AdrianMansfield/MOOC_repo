@@ -1,5 +1,5 @@
 package com.project.mooc.moocproject.entity.item_types;
 
-public enum child_entity_status {
+public enum ChildEntityStatus {
     not_started, finished
 }

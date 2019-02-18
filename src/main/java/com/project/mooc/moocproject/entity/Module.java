@@ -1,25 +1,20 @@
 package com.project.mooc.moocproject.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
-@Data
 @Entity
 @Table(name = "modules")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "lessonList")
-public class Module implements Serializable {
+@Getter
+@Setter
+public class Module extends AbstractEntity {
     @Id
-    @SequenceGenerator(name = "module_sequence", sequenceName = "modules_id_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "module_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title")
@@ -34,18 +29,8 @@ public class Module implements Serializable {
     @Column(name = "order")
     private int order;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy ="module")
-    private List<Lesson> lessonList;
-
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "users_modules",
-            joinColumns = @JoinColumn(name = "module_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> attendedUserList;
 }
