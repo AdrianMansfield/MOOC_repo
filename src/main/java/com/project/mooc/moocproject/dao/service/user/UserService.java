@@ -1,9 +1,10 @@
 package com.project.mooc.moocproject.dao.service.user;
 
-import com.project.mooc.moocproject.dto.ModuleDTO;
 import com.project.mooc.moocproject.dto.UserDTO;
+import com.project.mooc.moocproject.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -14,4 +15,7 @@ public interface UserService {
     void update(UserDTO userDTO);
 
     List<UserDTO> findAll();
+
+    Optional<UserDTO> findByUserName(String userName);
+
 }

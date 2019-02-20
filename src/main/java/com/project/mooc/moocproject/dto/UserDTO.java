@@ -1,6 +1,9 @@
 package com.project.mooc.moocproject.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -12,6 +15,10 @@ import java.time.LocalDateTime;
 public class UserDTO implements Serializable {
     private LocalDateTime dateOfSignUp;
     private String userName;
-    private boolean isAdmin;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String pictureLink;
+    private AuthorityDTO role;
 
 }

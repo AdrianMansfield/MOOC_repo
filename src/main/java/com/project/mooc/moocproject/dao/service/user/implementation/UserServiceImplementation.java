@@ -3,11 +3,13 @@ package com.project.mooc.moocproject.dao.service.user.implementation;
 import com.project.mooc.moocproject.dao.repository.UserRepository;
 import com.project.mooc.moocproject.dao.service.user.UserService;
 import com.project.mooc.moocproject.dto.UserDTO;
+import com.project.mooc.moocproject.entity.User;
 import com.project.mooc.moocproject.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,5 +39,10 @@ public class UserServiceImplementation implements UserService {
     @Override
     public List<UserDTO> findAll() {
         return userRepository.findAll().stream().map(userMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<UserDTO> findByUserName(String userName) {
+        return Optional.of(userMapper.toDTO(userRepository.findByUserName(userName)));
     }
 }
