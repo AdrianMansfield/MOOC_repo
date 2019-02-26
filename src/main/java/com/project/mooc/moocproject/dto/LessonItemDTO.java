@@ -8,10 +8,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class LessonItemDTO  implements Serializable {
     private String name;
-    private String order;
+    private int order;
     private String content;
     private String title_img_link;
-    private LessonDTO lesson;
+    private Long lessonId;
 }

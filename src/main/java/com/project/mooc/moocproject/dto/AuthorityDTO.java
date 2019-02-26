@@ -1,9 +1,6 @@
 package com.project.mooc.moocproject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -11,6 +8,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class AuthorityDTO implements Serializable {
     private String name;
 }

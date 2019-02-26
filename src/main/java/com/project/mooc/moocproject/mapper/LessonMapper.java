@@ -1,24 +1,32 @@
 package com.project.mooc.moocproject.mapper;
 
+import com.project.mooc.moocproject.dao.repository.ModuleRepository;
 import com.project.mooc.moocproject.dto.LessonDTO;
 import com.project.mooc.moocproject.entity.Lesson;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Component
 public class LessonMapper {
 
     @Autowired
-    private ModelMapper mapper;
+    private ModuleRepository moduleRepository;
+
 
     public Lesson toEntity(LessonDTO lessonDTO) {
-        return Objects.isNull(lessonDTO) ? null : mapper.map(lessonDTO, Lesson.class);
+        return Lesson.builder()
+                .title(lessonDTO.getTitle())
+                .order(lessonDTO.getOrder())
+                .module(moduleRepository.findById(lessonDTO.getModuleId())
+                        .orElseThrow(() -> new RuntimeException("lesson mapper error")))
+                .build();
     }
 
     public LessonDTO toDTO(Lesson lesson) {
-        return Objects.isNull(lesson) ? null : mapper.map(lesson, LessonDTO.class);
+        return LessonDTO.builder()
+                .title(lesson.getTitle())
+                .order(lesson.getOrder())
+                .moduleId(lesson.getModule().getId())
+                .build();
     }
 }

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+.navbar span {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.img-container img {
+    filter: blur(2px);
+}
+
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    font-family: 'Roboto Slab', sans-serif;
+    color: black;
+    font-weight: bold;
+    font-size: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.course-header {
+    width: 100%;
+    height: auto;
+}
+
+nav p {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 30px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.img-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 27rem;
+    background: url(logo-img.jpg) 100% 100% no-repeat;
+    background-size: cover;
+}
+
+.course-title {
+    color: black;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 70px;
+}
+
+.course-name {
+    font-weight: bold;
+}
+
+.course-author {
+    font-size: 40px;
+}
+
+.user-info {
+    margin-top: 5rem;
+}
+
+.user-img {
+    width: inherit;
+    height: inherit;
+}
+
+.user-data {
+    color: white;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 150%;
+}
+
+.user-data-caption{
+    color: lavender;
+    font-size: 75%;
+}
+
+.list-group-item{
+    background-color: #6c757d;
+}
+
+.text-center{
+    font-family: "Roboto Slab";
+}

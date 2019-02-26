@@ -1,24 +1,35 @@
 package com.project.mooc.moocproject.mapper;
 
+import com.project.mooc.moocproject.dao.repository.CourseRepository;
 import com.project.mooc.moocproject.dto.ModuleDTO;
 import com.project.mooc.moocproject.entity.Module;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Component
 public class ModuleMapper {
 
     @Autowired
-    private ModelMapper mapper;
+    private CourseRepository courseRepository;
 
     public ModuleDTO toDTO(Module module) {
-        return Objects.isNull(module) ? null : mapper.map(module, ModuleDTO.class);
+        return ModuleDTO.builder()
+                .title(module.getTitle())
+                .description(module.getDescription())
+                .title_img_link(module.getTitle_img_link())
+                .order(module.getOrder())
+                .courseId(module.getCourse().getId())
+                .build();
     }
 
     public Module toEntity(ModuleDTO moduleDTO) {
-        return Objects.isNull(moduleDTO) ? null : mapper.map(moduleDTO, Module.class);
+        return Module.builder()
+                .title(moduleDTO.getTitle())
+                .description(moduleDTO.getDescription())
+                .title_img_link(moduleDTO.getTitle_img_link())
+                .order(moduleDTO.getOrder())
+                .course(courseRepository.findById(moduleDTO.getCourseId())
+                        .orElseThrow(() -> new RuntimeException("module mapper error")))
+                .build();
     }
 }

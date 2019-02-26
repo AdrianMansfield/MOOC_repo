@@ -2,7 +2,8 @@ package com.project.mooc.moocproject.dao.service.user.implementation;
 
 import com.project.mooc.moocproject.dao.repository.UserRepository;
 import com.project.mooc.moocproject.dao.service.user.UserService;
-import com.project.mooc.moocproject.dto.UserDTO;
+import com.project.mooc.moocproject.dto.UserCreateDTO;
+import com.project.mooc.moocproject.dto.UserViewDTO;
 import com.project.mooc.moocproject.entity.User;
 import com.project.mooc.moocproject.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class UserServiceImplementation implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void save(UserDTO userDTO) {
-        userRepository.save(userMapper.toEntity(userDTO));
+    public void save(UserCreateDTO userCreateDTO) {
+        userRepository.save(userMapper.toEntity(userCreateDTO));
     }
 
     @Override
@@ -32,17 +33,20 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void update(UserDTO userDTO) {
-        userRepository.save(userMapper.toEntity(userDTO));
+    public void update(UserCreateDTO userCreateDTO) {
+        userRepository.save(userMapper.toEntity(userCreateDTO));
     }
 
     @Override
-    public List<UserDTO> findAll() {
+    public List<UserViewDTO> findAll() {
         return userRepository.findAll().stream().map(userMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<UserDTO> findByUserName(String userName) {
-        return Optional.of(userMapper.toDTO(userRepository.findByUserName(userName)));
+    public Optional<UserViewDTO> findByUserName(String userName) {
+        Optional<User> userOptional = userRepository.findByUserName(userName);
+        if (userOptional.isPresent()) {
+            return Optional.of(userMapper.toDTO(userOptional.get()));
+        } else throw new RuntimeException("not found user with name " + userName);
     }
 }

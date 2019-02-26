@@ -1,24 +1,35 @@
 package com.project.mooc.moocproject.mapper;
 
+import com.project.mooc.moocproject.dao.repository.LessonRepository;
 import com.project.mooc.moocproject.dto.LessonItemDTO;
 import com.project.mooc.moocproject.entity.LessonsItem;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Component
 public class LessonItemMapper {
 
     @Autowired
-    private ModelMapper modelMapper;
+    private LessonRepository lessonRepository;
 
     public LessonItemDTO toDTO(LessonsItem lessonItem) {
-        return Objects.isNull(lessonItem) ? null : modelMapper.map(lessonItem, LessonItemDTO.class);
+        return LessonItemDTO.builder()
+                .name(lessonItem.getName())
+                .order(lessonItem.getOrder())
+                .content(lessonItem.getContent())
+                .title_img_link(lessonItem.getTitle_img_link())
+                .lessonId(lessonItem.getLesson().getId())
+                .build();
     }
 
     public LessonsItem toEntity(LessonItemDTO lessonItemDTO) {
-        return Objects.isNull(lessonItemDTO) ? null : modelMapper.map(lessonItemDTO, LessonsItem.class);
+        return LessonsItem.builder()
+                .name(lessonItemDTO.getName())
+                .order(lessonItemDTO.getOrder())
+                .content(lessonItemDTO.getContent())
+                .title_img_link(lessonItemDTO.getTitle_img_link())
+                .lesson(lessonRepository.findById(lessonItemDTO.getLessonId())
+                        .orElseThrow(() -> new RuntimeException("lesson item mapper error")))
+                .build();
     }
 }

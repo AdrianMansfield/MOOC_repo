@@ -8,8 +8,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class CourseDTO implements Serializable {
     private String title;
-    private UserDTO creator;
+    private Long creatorId;
 
 }

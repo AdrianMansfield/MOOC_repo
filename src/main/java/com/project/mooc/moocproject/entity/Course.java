@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class Course extends AbstractEntity {
 
     @Column(name = "title")

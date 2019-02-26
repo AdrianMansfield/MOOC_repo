@@ -10,8 +10,9 @@ import javax.persistence.*;
 @Table(name = "lessons_items")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Setter
+@Getter
+@Builder
 public class LessonsItem extends AbstractEntity {
 
     @Column(name = "name")

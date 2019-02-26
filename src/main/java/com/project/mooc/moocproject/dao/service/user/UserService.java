@@ -1,21 +1,21 @@
 package com.project.mooc.moocproject.dao.service.user;
 
-import com.project.mooc.moocproject.dto.UserDTO;
-import com.project.mooc.moocproject.entity.User;
+import com.project.mooc.moocproject.dto.UserCreateDTO;
+import com.project.mooc.moocproject.dto.UserViewDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
-    void save(UserDTO userDTO);
+    void save(UserCreateDTO userCreateDTO);
 
     void deleteByID(Long id);
 
-    void update(UserDTO userDTO);
+    void update(UserCreateDTO userCreateDTO);
 
-    List<UserDTO> findAll();
+    List<UserViewDTO> findAll();
 
-    Optional<UserDTO> findByUserName(String userName);
+    Optional<UserViewDTO> findByUserName(String userName);
 
 }

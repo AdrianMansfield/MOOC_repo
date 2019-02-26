@@ -1,13 +1,12 @@
 package com.project.mooc.moocproject.dao.repository;
 
-import com.project.mooc.moocproject.entity.User;
+import com.project.mooc.moocproject.entity.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-    Optional<User> findByUserName(String userName);
+public interface AuthorityRepository extends JpaRepository<Authority, Long> {
+    Optional<Authority> findById(Long id);
 }

@@ -1,14 +1,17 @@
 package com.project.mooc.moocproject.web;
 
 import com.project.mooc.moocproject.dao.service.user.UserService;
-import com.project.mooc.moocproject.dto.UserDTO;
+import com.project.mooc.moocproject.dto.UserCreateDTO;
+import com.project.mooc.moocproject.dto.UserViewDTO;
 import com.project.mooc.moocproject.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -21,13 +24,13 @@ public class UserController {
     private UserMapper userMapper;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    List<UserDTO> findAll() {
+    List<UserViewDTO> findAll() {
         return userService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    void save(@RequestBody final List<UserDTO> userDTOS) {
-        userDTOS.forEach(userService::save);
+    void save(@RequestBody final List<UserCreateDTO> userCreateDTOS) {
+        userCreateDTOS.forEach(userService::save);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,7 +39,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    void update(@RequestBody final List<UserDTO> userDTOS) {
-        userDTOS.forEach(userService::update);
+    void update(@RequestBody final List<UserCreateDTO> userCreateDTOS) {
+        userCreateDTOS.forEach(userService::update);
     }
 }
