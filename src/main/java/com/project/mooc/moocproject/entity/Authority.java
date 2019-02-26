@@ -19,7 +19,4 @@ public class Authority {
 
     @Column(name = "name")
     private String name;
-
-    @OneToOne(mappedBy = "role")
-    private User user;
 }

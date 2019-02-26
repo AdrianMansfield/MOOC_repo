@@ -1,11 +1,12 @@
 package com.project.mooc.moocproject.entity;
 
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
@@ -40,9 +41,9 @@ public class User {
     @Column(name = "user_pic")
     private String pictureLink;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role", referencedColumnName = "id")
-    @ColumnDefault("1")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "role")
     private Authority role;
 
     @Column(name = "password")

@@ -14,4 +14,6 @@ public interface CourseService {
     List<CourseDTO> findAll();
 
     void update(CourseDTO courseDTO);
+
+    List<CourseDTO> findTop3ByOrderByIdDesc();
 }

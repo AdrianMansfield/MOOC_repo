@@ -4,14 +4,12 @@ import com.project.mooc.moocproject.dao.service.course.CourseService;
 import com.project.mooc.moocproject.dto.CourseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/courses")
 public class CourseController {
 
@@ -36,6 +34,11 @@ public class CourseController {
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     void update(@RequestBody final List<CourseDTO> courseDTOS) {
         courseDTOS.forEach(courseService::update);
+    }
+
+    @RequestMapping(value = "/get-latest-posts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    List<CourseDTO> getLatestRow(){
+        return courseService.findTop3ByOrderByIdDesc();
     }
 
 }

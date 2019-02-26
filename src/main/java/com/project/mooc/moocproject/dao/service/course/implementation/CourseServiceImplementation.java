@@ -3,6 +3,7 @@ package com.project.mooc.moocproject.dao.service.course.implementation;
 import com.project.mooc.moocproject.dao.repository.CourseRepository;
 import com.project.mooc.moocproject.dao.service.course.CourseService;
 import com.project.mooc.moocproject.dto.CourseDTO;
+import com.project.mooc.moocproject.entity.Course;
 import com.project.mooc.moocproject.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class CourseServiceImplementation implements CourseService {
     @Override
     public void update(CourseDTO courseDTO) {
         courseRepository.save(mapper.toEntity(courseDTO));
+    }
+
+    @Override
+    public List<CourseDTO> findTop3ByOrderByIdDesc() {
+        return courseRepository.findTop3ByOrderByIdDesc().stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 }

@@ -38,4 +38,9 @@ public class ModuleServiceImplementation implements ModuleService {
     public List<ModuleDTO> findAll() {
         return moduleRepository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<ModuleDTO> findByCourseId(Long courseId) {
+        return moduleRepository.findByCourse_Id(courseId).stream().map(mapper::toDTO).collect(Collectors.toList());
+    }
 }
