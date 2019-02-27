@@ -19,6 +19,7 @@ public class ModuleMapper {
                 .title_img_link(module.getTitle_img_link())
                 .order(module.getOrder())
                 .courseId(module.getCourse().getId())
+                .id(module.getId())
                 .build();
     }
 

@@ -47,6 +47,5 @@ function drawCurrentCourseModule(jsonData) {
         goToModuleLink.innerText = 'go to module';
         cardBody.appendChild(goToModuleLink);
         cardDeck[0].appendChild(card);
-        console.log(jsonData);
     });
 }
