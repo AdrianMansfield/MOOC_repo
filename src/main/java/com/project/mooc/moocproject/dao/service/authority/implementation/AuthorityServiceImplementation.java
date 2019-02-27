@@ -1,7 +1,7 @@
-package com.project.mooc.moocproject.dao.service.Authority.implementation;
+package com.project.mooc.moocproject.dao.service.authority.implementation;
 
 import com.project.mooc.moocproject.dao.repository.AuthorityRepository;
-import com.project.mooc.moocproject.dao.service.Authority.AuthorityService;
+import com.project.mooc.moocproject.dao.service.authority.AuthorityService;
 import com.project.mooc.moocproject.dto.AuthorityDTO;
 import com.project.mooc.moocproject.entity.Authority;
 import com.project.mooc.moocproject.mapper.AuthorityMapper;

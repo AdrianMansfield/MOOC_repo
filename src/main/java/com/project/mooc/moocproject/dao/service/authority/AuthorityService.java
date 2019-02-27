@@ -1,4 +1,4 @@
-package com.project.mooc.moocproject.dao.service.Authority;
+package com.project.mooc.moocproject.dao.service.authority;
 
 import com.project.mooc.moocproject.dto.AuthorityDTO;
 
