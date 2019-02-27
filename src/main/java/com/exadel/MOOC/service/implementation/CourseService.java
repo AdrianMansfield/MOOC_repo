@@ -1,7 +1,7 @@
-package com.exadel.MOOC.service.course.implementation;
+package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.CourseRepository;
-import com.exadel.MOOC.service.course.CourseService;
+import com.exadel.MOOC.service.ICourseService;
 import com.exadel.MOOC.dto.CourseDTO;
 import com.exadel.MOOC.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +11,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CourseServiceImplementation implements CourseService {
+public class CourseService implements ICourseService {
 
     @Autowired
     private CourseRepository courseRepository;
 
     @Autowired
-    private CourseMapper mapper;
+    private CourseMapper courseMapper;
 
     @Override
     public void save(CourseDTO courseDTO) {
-        courseRepository.save(mapper.toEntity(courseDTO));
+        courseRepository.save(courseMapper.toEntity(courseDTO));
     }
 
     @Override
@@ -31,16 +31,16 @@ public class CourseServiceImplementation implements CourseService {
 
     @Override
     public List<CourseDTO> findAll() {
-        return courseRepository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());
+        return courseRepository.findAll().stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public void update(CourseDTO courseDTO) {
-        courseRepository.save(mapper.toEntity(courseDTO));
+        courseRepository.save(courseMapper.toEntity(courseDTO));
     }
 
     @Override
     public List<CourseDTO> findTop3ByOrderByIdDesc() {
-        return courseRepository.findTop3ByOrderByIdDesc().stream().map(mapper::toDTO).collect(Collectors.toList());
+        return courseRepository.findTop3ByOrderByIdDesc().stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 }

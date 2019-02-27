@@ -1,7 +1,7 @@
-package com.exadel.MOOC.service.authority.implementation;
+package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.AuthorityRepository;
-import com.exadel.MOOC.service.authority.AuthorityService;
+import com.exadel.MOOC.service.IAuthorityService;
 import com.exadel.MOOC.dto.AuthorityDTO;
 import com.exadel.MOOC.entity.Authority;
 import com.exadel.MOOC.mapper.AuthorityMapper;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AuthorityServiceImplementation implements AuthorityService {
+public class AuthorityService implements IAuthorityService {
 
     @Autowired
     private AuthorityRepository authorityRepository;

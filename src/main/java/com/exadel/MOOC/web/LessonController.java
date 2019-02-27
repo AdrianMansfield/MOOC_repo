@@ -1,6 +1,6 @@
 package com.exadel.MOOC.web;
 
-import com.exadel.MOOC.service.lesson.LessonService;
+import com.exadel.MOOC.service.ILessonService;
 import com.exadel.MOOC.dto.LessonDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,7 +14,7 @@ import java.util.List;
 public class LessonController {
 
     @Autowired
-    private LessonService lessonService;
+    private ILessonService lessonService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

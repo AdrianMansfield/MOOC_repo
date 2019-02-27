@@ -1,7 +1,7 @@
-package com.exadel.MOOC.service.user.implementation;
+package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.UserRepository;
-import com.exadel.MOOC.service.user.UserService;
+import com.exadel.MOOC.service.IUserService;
 import com.exadel.MOOC.dto.UserCreateDTO;
 import com.exadel.MOOC.dto.UserViewDTO;
 import com.exadel.MOOC.entity.User;
@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImplementation implements UserService {
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;

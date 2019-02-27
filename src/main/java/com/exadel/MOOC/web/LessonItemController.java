@@ -1,6 +1,6 @@
 package com.exadel.MOOC.web;
 
-import com.exadel.MOOC.service.lessonItem.LessonItemService;
+import com.exadel.MOOC.service.ILessonItemService;
 import com.exadel.MOOC.dto.LessonItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +13,7 @@ import java.util.List;
 public class LessonItemController {
 
     @Autowired
-    private LessonItemService lessonItemService;
+    private ILessonItemService lessonItemService;
 
     @RequestMapping(value = "/update",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     void update(@RequestBody final List<LessonItemDTO> lessonItemDTOS) {

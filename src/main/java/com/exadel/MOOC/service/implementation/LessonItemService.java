@@ -1,7 +1,7 @@
-package com.exadel.MOOC.service.lessonItem.implementation;
+package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.LessonItemRepository;
-import com.exadel.MOOC.service.lessonItem.LessonItemService;
+import com.exadel.MOOC.service.ILessonItemService;
 import com.exadel.MOOC.dto.LessonItemDTO;
 import com.exadel.MOOC.mapper.LessonItemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +11,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class LessonItemServiceImplementation implements LessonItemService {
+public class LessonItemService implements ILessonItemService {
 
     @Autowired
     private LessonItemRepository lessonItemRepository;
 
     @Autowired
-    private LessonItemMapper mapper;
+    private LessonItemMapper lessonItemMapper;
 
     @Override
     public void save(LessonItemDTO lessonItemDTO) {
-        lessonItemRepository.save(mapper.toEntity(lessonItemDTO));
+        lessonItemRepository.save(lessonItemMapper.toEntity(lessonItemDTO));
     }
 
     @Override
@@ -31,11 +31,11 @@ public class LessonItemServiceImplementation implements LessonItemService {
 
     @Override
     public void update(LessonItemDTO lessonItemDTO) {
-        lessonItemRepository.save(mapper.toEntity(lessonItemDTO));
+        lessonItemRepository.save(lessonItemMapper.toEntity(lessonItemDTO));
     }
 
     @Override
     public List<LessonItemDTO> findAll() {
-        return lessonItemRepository.findAll().stream().map(mapper::toDTO).collect(Collectors.toList());
+        return lessonItemRepository.findAll().stream().map(lessonItemMapper::toDTO).collect(Collectors.toList());
     }
 }

@@ -1,10 +1,10 @@
-package com.exadel.MOOC.service.module;
+package com.exadel.MOOC.service;
 
 import com.exadel.MOOC.dto.ModuleDTO;
 
 import java.util.List;
 
-public interface ModuleService {
+public interface IModuleService {
 
     void save(ModuleDTO moduleDTO);
 

@@ -1,10 +1,10 @@
-package com.exadel.MOOC.service.authority;
+package com.exadel.MOOC.service;
 
 import com.exadel.MOOC.dto.AuthorityDTO;
 
 import java.util.Optional;
 
-public interface AuthorityService {
+public interface IAuthorityService {
 
     Optional<AuthorityDTO> findById(Long id);
 }

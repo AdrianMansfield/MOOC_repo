@@ -1,4 +1,4 @@
-package com.exadel.MOOC.service.user;
+package com.exadel.MOOC.service;
 
 import com.exadel.MOOC.dto.UserCreateDTO;
 import com.exadel.MOOC.dto.UserViewDTO;
@@ -6,7 +6,7 @@ import com.exadel.MOOC.dto.UserViewDTO;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserService {
+public interface IUserService {
 
     void save(UserCreateDTO userCreateDTO);
 

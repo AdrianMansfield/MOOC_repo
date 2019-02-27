@@ -1,11 +1,11 @@
-package com.exadel.MOOC.service.course;
+package com.exadel.MOOC.service;
 
 import com.exadel.MOOC.dto.CourseDTO;
 
 import java.util.List;
 
 
-public interface CourseService {
+public interface ICourseService {
     void save(CourseDTO courseDTO);
 
     void deleteById(Long id);

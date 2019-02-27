@@ -1,10 +1,10 @@
-package com.exadel.MOOC.service.lesson;
+package com.exadel.MOOC.service;
 
 import com.exadel.MOOC.dto.LessonDTO;
 
 import java.util.List;
 
-public interface LessonService {
+public interface ILessonService {
     void save(LessonDTO lessonDTO);
 
     void deleteById(Long id);

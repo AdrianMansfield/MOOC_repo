@@ -1,7 +1,7 @@
-package com.exadel.MOOC.service.lesson.implementation;
+package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.LessonRepository;
-import com.exadel.MOOC.service.lesson.LessonService;
+import com.exadel.MOOC.service.ILessonService;
 import com.exadel.MOOC.dto.LessonDTO;
 import com.exadel.MOOC.mapper.LessonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class LessonServiceImplementation implements LessonService {
+public class LessonService implements ILessonService {
 
     @Autowired
     private LessonRepository lessonRepository;

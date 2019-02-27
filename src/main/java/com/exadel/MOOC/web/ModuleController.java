@@ -1,6 +1,6 @@
 package com.exadel.MOOC.web;
 
-import com.exadel.MOOC.service.module.ModuleService;
+import com.exadel.MOOC.service.IModuleService;
 import com.exadel.MOOC.dto.ModuleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ModuleController {
 
     @Autowired
-    private ModuleService moduleService;
+    private IModuleService moduleService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     void save(@RequestBody final List<ModuleDTO> moduleDTOS) {
