@@ -4,14 +4,12 @@ import com.project.mooc.moocproject.dao.service.lesson.LessonService;
 import com.project.mooc.moocproject.dto.LessonDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/lesson")
 public class LessonController {
 
@@ -19,6 +17,7 @@ public class LessonController {
     private LessonService lessonService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     List<LessonDTO> findAll() {
         return lessonService.findAll();
     }
@@ -36,5 +35,11 @@ public class LessonController {
     @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     void update(@RequestBody final List<LessonDTO> courseDTOS) {
         courseDTOS.forEach(lessonService::update);
+    }
+
+    @RequestMapping(value = "/get-lessons-by-module/{moduleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    List<LessonDTO> findByModuleId(@PathVariable Long moduleId) {
+        return lessonService.findByModuleId(moduleId);
     }
 }

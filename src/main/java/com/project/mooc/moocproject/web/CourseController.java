@@ -17,6 +17,7 @@ public class CourseController {
     private CourseService courseService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     List<CourseDTO> findAll() {
         return courseService.findAll();
     }
@@ -37,6 +38,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/get-latest-posts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     List<CourseDTO> getLatestRow(){
         return courseService.findTop3ByOrderByIdDesc();
     }
