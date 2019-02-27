@@ -10,9 +10,9 @@ function json(response) {
     return response.json()
 }
 
-let courseId = new URL(window.location.href).searchParams.get('courseId');
+let courseIdParam = new URL(window.location.href).search;
 
-fetch('http://localhost:8095/modules/get-modules-by-course/' + courseId)
+fetch('http://localhost:8095/module/find' + courseIdParam)
     .then(status)
     .then(json)
     .then(function (data) {

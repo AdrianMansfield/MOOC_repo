@@ -10,7 +10,7 @@ function json(response) {
     return response.json()
 }
 
-fetch('http://localhost:8095/courses/get-latest-posts')
+fetch('http://localhost:8095/course/three-latest')
     .then(status)
     .then(json)
     .then(function (data) {
