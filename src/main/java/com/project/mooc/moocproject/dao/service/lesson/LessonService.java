@@ -12,4 +12,6 @@ public interface LessonService {
     void update(LessonDTO lessonDTO);
 
     List<LessonDTO> findAll();
+
+    List<LessonDTO> findByModuleId(Long moduleId);
 }

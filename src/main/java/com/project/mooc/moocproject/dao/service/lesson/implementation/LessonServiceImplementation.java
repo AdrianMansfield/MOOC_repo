@@ -38,4 +38,9 @@ public class LessonServiceImplementation implements LessonService {
     public List<LessonDTO> findAll() {
         return lessonRepository.findAll().stream().map(lessonMapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<LessonDTO> findByModuleId(Long moduleId) {
+        return lessonRepository.findByModule_Id(moduleId).stream().map(lessonMapper::toDTO).collect(Collectors.toList());
+    }
 }
