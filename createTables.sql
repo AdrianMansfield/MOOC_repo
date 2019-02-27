@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS USERS
   DATE_OF_SIGN_UP timestamp without time zone,
   USER_NAME       varchar(20) unique not null,
   IS_ADMIN        boolean,
-  --   PASSWORD        varchar(100)       not null,
+  PASSWORD        varchar(100)       not null,
   FIRST_NAME      varchar(30)        not null,
   LAST_NAME       varchar(40)        not null,
   EMAIL           varchar(50)        not null,
