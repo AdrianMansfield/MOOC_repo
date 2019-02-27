@@ -1,7 +1,7 @@
-package com.exadel.MOOC.dao.service.user.implementation;
+package com.exadel.MOOC.service.user.implementation;
 
 import com.exadel.MOOC.dao.repository.UserRepository;
-import com.exadel.MOOC.dao.service.user.UserService;
+import com.exadel.MOOC.service.user.UserService;
 import com.exadel.MOOC.dto.UserCreateDTO;
 import com.exadel.MOOC.dto.UserViewDTO;
 import com.exadel.MOOC.entity.User;

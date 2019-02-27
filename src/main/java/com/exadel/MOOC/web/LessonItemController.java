@@ -1,6 +1,6 @@
 package com.exadel.MOOC.web;
 
-import com.exadel.MOOC.dao.service.lessonItem.LessonItemService;
+import com.exadel.MOOC.service.lessonItem.LessonItemService;
 import com.exadel.MOOC.dto.LessonItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

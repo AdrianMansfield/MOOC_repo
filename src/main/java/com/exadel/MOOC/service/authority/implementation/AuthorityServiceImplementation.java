@@ -1,7 +1,7 @@
-package com.exadel.MOOC.dao.service.authority.implementation;
+package com.exadel.MOOC.service.authority.implementation;
 
 import com.exadel.MOOC.dao.repository.AuthorityRepository;
-import com.exadel.MOOC.dao.service.authority.AuthorityService;
+import com.exadel.MOOC.service.authority.AuthorityService;
 import com.exadel.MOOC.dto.AuthorityDTO;
 import com.exadel.MOOC.entity.Authority;
 import com.exadel.MOOC.mapper.AuthorityMapper;

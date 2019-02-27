@@ -1,4 +1,4 @@
-package com.exadel.MOOC.dao.service.user;
+package com.exadel.MOOC.service.user;
 
 import com.exadel.MOOC.dto.UserCreateDTO;
 import com.exadel.MOOC.dto.UserViewDTO;

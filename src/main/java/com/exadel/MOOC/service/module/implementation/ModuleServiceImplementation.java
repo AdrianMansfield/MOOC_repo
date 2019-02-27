@@ -1,7 +1,7 @@
-package com.exadel.MOOC.dao.service.module.implementation;
+package com.exadel.MOOC.service.module.implementation;
 
 import com.exadel.MOOC.dao.repository.ModuleRepository;
-import com.exadel.MOOC.dao.service.module.ModuleService;
+import com.exadel.MOOC.service.module.ModuleService;
 import com.exadel.MOOC.dto.ModuleDTO;
 import com.exadel.MOOC.mapper.ModuleMapper;
 import org.springframework.beans.factory.annotation.Autowired;

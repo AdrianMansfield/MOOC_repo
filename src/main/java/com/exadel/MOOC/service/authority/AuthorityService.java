@@ -1,4 +1,4 @@
-package com.exadel.MOOC.dao.service.authority;
+package com.exadel.MOOC.service.authority;
 
 import com.exadel.MOOC.dto.AuthorityDTO;
 

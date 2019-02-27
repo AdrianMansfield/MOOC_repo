@@ -1,4 +1,4 @@
-package com.exadel.MOOC.dao.service.lessonItem;
+package com.exadel.MOOC.service.lessonItem;
 
 import com.exadel.MOOC.dto.LessonItemDTO;
 

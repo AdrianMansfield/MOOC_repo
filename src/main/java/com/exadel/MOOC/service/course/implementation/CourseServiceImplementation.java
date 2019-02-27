@@ -1,7 +1,7 @@
-package com.exadel.MOOC.dao.service.course.implementation;
+package com.exadel.MOOC.service.course.implementation;
 
 import com.exadel.MOOC.dao.repository.CourseRepository;
-import com.exadel.MOOC.dao.service.course.CourseService;
+import com.exadel.MOOC.service.course.CourseService;
 import com.exadel.MOOC.dto.CourseDTO;
 import com.exadel.MOOC.mapper.CourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
