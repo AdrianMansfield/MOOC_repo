@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/modules")
+@RequestMapping("/module")
 public class ModuleController {
 
     @Autowired
