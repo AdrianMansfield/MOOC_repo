@@ -1,6 +1,6 @@
 package com.exadel.MOOC.security;
 
-import com.exadel.MOOC.dao.repository.UserRepository;
+import com.exadel.MOOC.dao.repository.IUserRepository;
 import com.exadel.MOOC.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MyUserDetailService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
 
     @Override

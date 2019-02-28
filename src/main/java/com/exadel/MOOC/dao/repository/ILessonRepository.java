@@ -1,13 +1,13 @@
 package com.exadel.MOOC.dao.repository;
 
-import com.exadel.MOOC.entity.Module;
+import com.exadel.MOOC.entity.Lesson;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<Module,Long> {
+public interface ILessonRepository extends JpaRepository<Lesson, Long> {
 
-    List<Module> findByCourse_Id(Long courseId);
+    List<Lesson> findByModule_Id(Long moduleId);
 }

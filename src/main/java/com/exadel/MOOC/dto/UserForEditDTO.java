@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Builder
-public class UserCreateDTO implements Serializable {
+public class UserForEditDTO implements Serializable {
     private String userName;
     private String firstName;
     private String lastName;

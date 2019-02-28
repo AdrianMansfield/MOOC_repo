@@ -1,6 +1,6 @@
 package com.exadel.MOOC.mapper;
 
-import com.exadel.MOOC.dao.repository.CourseRepository;
+import com.exadel.MOOC.dao.repository.ICourseRepository;
 import com.exadel.MOOC.dto.ModuleDTO;
 import com.exadel.MOOC.entity.Module;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class ModuleMapper {
 
     @Autowired
-    private CourseRepository courseRepository;
+    private ICourseRepository courseRepository;
 
     public ModuleDTO toDTO(Module module) {
         return ModuleDTO.builder()

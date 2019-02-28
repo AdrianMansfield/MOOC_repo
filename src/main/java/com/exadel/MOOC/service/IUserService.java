@@ -1,20 +1,20 @@
 package com.exadel.MOOC.service;
 
-import com.exadel.MOOC.dto.UserCreateDTO;
-import com.exadel.MOOC.dto.UserViewDTO;
+import com.exadel.MOOC.dto.UserForEditDTO;
+import com.exadel.MOOC.dto.UserForViewDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
 
-    void save(UserCreateDTO userCreateDTO);
+    void save(UserForEditDTO userForEditDTO);
 
     void deleteByID(Long id);
 
-    void update(UserCreateDTO userCreateDTO);
+    void update(UserForEditDTO userForEditDTO);
 
-    List<UserViewDTO> findAll();
+    List<UserForViewDTO> findAll();
 
-    Optional<UserViewDTO> findByUserName(String userName);
+    Optional<UserForViewDTO> findByUserName(String userName);
 }

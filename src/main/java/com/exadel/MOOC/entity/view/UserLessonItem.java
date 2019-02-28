@@ -4,18 +4,19 @@ import jdk.nashorn.internal.ir.annotations.Immutable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Immutable
-@Table(name = "user_lesson_item")
+@Table(name = "user_lesson_item_view")
 @NoArgsConstructor
 @Getter
-public class UserLessonItem implements Serializable {
+public class UserLessonItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -28,13 +29,13 @@ public class UserLessonItem implements Serializable {
     private String content;
 
     @Column(name = "title_img")
-    private String title_img;
+    private String titleImg;
 
     @Column(name = "lesson_id")
-    private Long lesson_id;
+    private Long lessonId;
 
     @Column(name = "user_id")
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "status")
     private String status;

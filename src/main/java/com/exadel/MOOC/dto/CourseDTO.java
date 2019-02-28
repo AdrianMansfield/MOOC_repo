@@ -12,6 +12,6 @@ import java.io.Serializable;
 public class CourseDTO implements Serializable {
     private Long id;
     private String title;
-    private UserViewDTO creator;
+    private UserForViewDTO creator;
 
 }

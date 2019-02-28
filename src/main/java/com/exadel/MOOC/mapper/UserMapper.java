@@ -1,7 +1,7 @@
 package com.exadel.MOOC.mapper;
 
-import com.exadel.MOOC.dto.UserCreateDTO;
-import com.exadel.MOOC.dto.UserViewDTO;
+import com.exadel.MOOC.dto.UserForEditDTO;
+import com.exadel.MOOC.dto.UserForViewDTO;
 import com.exadel.MOOC.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +16,21 @@ public class UserMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public User toEntity(UserCreateDTO userCreateDTO) {
+    public User toEntity(UserForEditDTO userForEditDTO) {
         return User.builder()
-                .userName(userCreateDTO.getUserName())
-                .firstName(userCreateDTO.getFirstName())
-                .lastName(userCreateDTO.getLastName())
-                .email(userCreateDTO.getEmail())
-                .password(userCreateDTO.getPassword())
-                .pictureLink(userCreateDTO.getPictureLink())
+                .userName(userForEditDTO.getUserName())
+                .firstName(userForEditDTO.getFirstName())
+                .lastName(userForEditDTO.getLastName())
+                .email(userForEditDTO.getEmail())
+                .password(userForEditDTO.getPassword())
+                .pictureLink(userForEditDTO.getPictureLink())
                 .dateOfSignUp(LocalDateTime.now())
                 .build();
 
     }
 
-    public UserViewDTO toDTO(User user) {
-        return UserViewDTO.builder()
+    public UserForViewDTO toDTO(User user) {
+        return UserForViewDTO.builder()
                 .userName(user.getUserName())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())

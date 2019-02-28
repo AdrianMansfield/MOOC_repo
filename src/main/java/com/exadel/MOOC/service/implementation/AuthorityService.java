@@ -1,6 +1,6 @@
 package com.exadel.MOOC.service.implementation;
 
-import com.exadel.MOOC.dao.repository.AuthorityRepository;
+import com.exadel.MOOC.dao.repository.IAuthorityRepository;
 import com.exadel.MOOC.service.IAuthorityService;
 import com.exadel.MOOC.dto.AuthorityDTO;
 import com.exadel.MOOC.entity.Authority;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AuthorityService implements IAuthorityService {
 
     @Autowired
-    private AuthorityRepository authorityRepository;
+    private IAuthorityRepository authorityRepository;
 
     @Autowired
     private AuthorityMapper authorityMapper;

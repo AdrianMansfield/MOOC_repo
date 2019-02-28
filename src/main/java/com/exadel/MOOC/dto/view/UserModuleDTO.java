@@ -1,0 +1,21 @@
+package com.exadel.MOOC.dto.view;
+
+import lombok.*;
+
+import java.io.Serializable;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+public class UserModuleDTO implements Serializable {
+    private Long moduleId;
+    private String title;
+    private String description;
+    private String titleImg;
+    private int order;
+    private Long courseId;
+    private Long userId;
+    private String status;
+}

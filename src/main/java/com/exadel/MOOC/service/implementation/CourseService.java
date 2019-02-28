@@ -1,6 +1,6 @@
 package com.exadel.MOOC.service.implementation;
 
-import com.exadel.MOOC.dao.repository.CourseRepository;
+import com.exadel.MOOC.dao.repository.ICourseRepository;
 import com.exadel.MOOC.service.ICourseService;
 import com.exadel.MOOC.dto.CourseDTO;
 import com.exadel.MOOC.mapper.CourseMapper;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class CourseService implements ICourseService {
 
     @Autowired
-    private CourseRepository courseRepository;
+    private ICourseRepository courseRepository;
 
     @Autowired
     private CourseMapper courseMapper;

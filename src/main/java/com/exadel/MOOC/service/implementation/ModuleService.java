@@ -1,6 +1,6 @@
 package com.exadel.MOOC.service.implementation;
 
-import com.exadel.MOOC.dao.repository.ModuleRepository;
+import com.exadel.MOOC.dao.repository.IModuleRepository;
 import com.exadel.MOOC.service.IModuleService;
 import com.exadel.MOOC.dto.ModuleDTO;
 import com.exadel.MOOC.mapper.ModuleMapper;
@@ -17,7 +17,7 @@ public class ModuleService implements IModuleService {
     private ModuleMapper mapper;
 
     @Autowired
-    private ModuleRepository moduleRepository;
+    private IModuleRepository moduleRepository;
 
     @Override
     public void save(ModuleDTO moduleDTO) {

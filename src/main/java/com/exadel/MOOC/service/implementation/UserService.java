@@ -1,9 +1,9 @@
 package com.exadel.MOOC.service.implementation;
 
-import com.exadel.MOOC.dao.repository.UserRepository;
+import com.exadel.MOOC.dao.repository.IUserRepository;
 import com.exadel.MOOC.service.IUserService;
-import com.exadel.MOOC.dto.UserCreateDTO;
-import com.exadel.MOOC.dto.UserViewDTO;
+import com.exadel.MOOC.dto.UserForEditDTO;
+import com.exadel.MOOC.dto.UserForViewDTO;
 import com.exadel.MOOC.entity.User;
 import com.exadel.MOOC.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    public void save(UserCreateDTO userCreateDTO) {
-        userRepository.save(userMapper.toEntity(userCreateDTO));
+    public void save(UserForEditDTO userForEditDTO) {
+        userRepository.save(userMapper.toEntity(userForEditDTO));
     }
 
     @Override
@@ -33,17 +33,17 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void update(UserCreateDTO userCreateDTO) {
-        userRepository.save(userMapper.toEntity(userCreateDTO));
+    public void update(UserForEditDTO userForEditDTO) {
+        userRepository.save(userMapper.toEntity(userForEditDTO));
     }
 
     @Override
-    public List<UserViewDTO> findAll() {
+    public List<UserForViewDTO> findAll() {
         return userRepository.findAll().stream().map(userMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<UserViewDTO> findByUserName(String userName) {
+    public Optional<UserForViewDTO> findByUserName(String userName) {
         Optional<User> userOptional = userRepository.findByUserName(userName);
         if (userOptional.isPresent()) {
             return Optional.of(userMapper.toDTO(userOptional.get()));

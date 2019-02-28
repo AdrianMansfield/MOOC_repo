@@ -1,8 +1,8 @@
 package com.exadel.MOOC.web;
 
 import com.exadel.MOOC.service.IUserService;
-import com.exadel.MOOC.dto.UserCreateDTO;
-import com.exadel.MOOC.dto.UserViewDTO;
+import com.exadel.MOOC.dto.UserForEditDTO;
+import com.exadel.MOOC.dto.UserForViewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +19,13 @@ public class UserController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    List<UserViewDTO> findAll() {
+    List<UserForViewDTO> findAll() {
         return userService.findAll();
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    void save(@RequestBody final List<UserCreateDTO> userCreateDTOS) {
-        userCreateDTOS.forEach(userService::save);
+    void save(@RequestBody final List<UserForEditDTO> userForEditDTOS) {
+        userForEditDTOS.forEach(userService::save);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    void update(@RequestBody final List<UserCreateDTO> userCreateDTOS) {
-        userCreateDTOS.forEach(userService::update);
+    void update(@RequestBody final List<UserForEditDTO> userForEditDTOS) {
+        userForEditDTOS.forEach(userService::update);
     }
 }

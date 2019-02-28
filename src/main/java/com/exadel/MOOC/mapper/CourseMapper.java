@@ -1,8 +1,8 @@
 package com.exadel.MOOC.mapper;
 
-import com.exadel.MOOC.dao.repository.UserRepository;
+import com.exadel.MOOC.dao.repository.IUserRepository;
 import com.exadel.MOOC.dto.CourseDTO;
-import com.exadel.MOOC.dto.UserViewDTO;
+import com.exadel.MOOC.dto.UserForViewDTO;
 import com.exadel.MOOC.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class CourseMapper {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     public Course toEntity(CourseDTO courseDTO) {
         return Course.builder()
@@ -24,7 +24,7 @@ public class CourseMapper {
     public CourseDTO toDTO(Course course) {
         return CourseDTO.builder()
                 .title(course.getTitle())
-                .creator(UserViewDTO.builder()
+                .creator(UserForViewDTO.builder()
                         .firstName(course.getCreator().getFirstName())
                         .lastName(course.getCreator().getLastName())
                         .email(course.getCreator().getEmail())

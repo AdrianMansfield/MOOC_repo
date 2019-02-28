@@ -1,6 +1,6 @@
 package com.exadel.MOOC.service.implementation;
 
-import com.exadel.MOOC.dao.repository.LessonItemRepository;
+import com.exadel.MOOC.dao.repository.ILessonItemRepository;
 import com.exadel.MOOC.service.ILessonItemService;
 import com.exadel.MOOC.dto.LessonItemDTO;
 import com.exadel.MOOC.mapper.LessonItemMapper;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class LessonItemService implements ILessonItemService {
 
     @Autowired
-    private LessonItemRepository lessonItemRepository;
+    private ILessonItemRepository lessonItemRepository;
 
     @Autowired
     private LessonItemMapper lessonItemMapper;

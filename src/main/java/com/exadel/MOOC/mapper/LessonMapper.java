@@ -1,6 +1,6 @@
 package com.exadel.MOOC.mapper;
 
-import com.exadel.MOOC.dao.repository.ModuleRepository;
+import com.exadel.MOOC.dao.repository.IModuleRepository;
 import com.exadel.MOOC.dto.LessonDTO;
 import com.exadel.MOOC.entity.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class LessonMapper {
 
     @Autowired
-    private ModuleRepository moduleRepository;
+    private IModuleRepository moduleRepository;
 
 
     public Lesson toEntity(LessonDTO lessonDTO) {
