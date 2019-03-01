@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IUserModuleService {
     List<UserModuleDTO> findByUserIdAndModuleId(Long userId, Long moduleId);
+
+    List<UserModuleDTO> findByUserId(Long userId);
 }

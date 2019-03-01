@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Immutable
 @Table(name = "user_module_view")
 @NoArgsConstructor
 @Getter
@@ -18,6 +17,9 @@ public class UserModule {
 
     @Id
     private Long id;
+
+    @Column(name = "module_id")
+    private Long moduleId;
 
     @Column(name = "title")
     private String title;

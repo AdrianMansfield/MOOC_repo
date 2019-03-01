@@ -25,4 +25,10 @@ public class UserLessonService implements IUserLessonService {
         return userLessonViewRepository.findByUserIdAndLessonId(userId, lessonId).stream()
                 .map(mapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<UserLessonDTO> findByUserId(Long userId) {
+        return userLessonViewRepository.findByUserId(userId).stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
+    }
 }

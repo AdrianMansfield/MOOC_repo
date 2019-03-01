@@ -25,4 +25,10 @@ public class UserCourseService implements IUserCourseService {
         return userCourseViewRepository.findByUserIdAndCourseId(userId, courseId).stream()
                 .map(mapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<UserCourseDTO> findByUserId(Long userId) {
+        return userCourseViewRepository.findByUserId(userId).stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
+    }
 }

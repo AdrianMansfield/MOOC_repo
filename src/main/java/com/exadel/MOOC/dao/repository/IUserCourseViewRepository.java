@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface IUserCourseViewRepository {
     List<UserCourse> findByUserIdAndCourseId(Long userId, Long courseId);
+
+    List<UserCourse> findByUserId(Long userId);
+
+
 }

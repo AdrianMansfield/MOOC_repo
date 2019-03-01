@@ -9,35 +9,48 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
 public class UserCourseViewRepository implements IUserCourseViewRepository {
 
-    private static final String COURSE_ID = "id";
-    private static final String USER_ID = "user_id";
+    private static final String COURSE_ID = "courseId";
+    private static final String USER_ID = "userId";
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<UserCourse> findByUserIdAndCourseId(Long userId, Long courseId) {
-        TypedQuery<UserCourse> userCourseTypedQuery = entityManager.createQuery(getUserCourseCriteriaQuery());
-        userCourseTypedQuery.setParameter(USER_ID, userId);
-        userCourseTypedQuery.setParameter(COURSE_ID, courseId);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<UserCourse> criteriaQuery = criteriaBuilder.createQuery(UserCourse.class);
+        Root<UserCourse> userCourseRoot = criteriaQuery.from(UserCourse.class);
+        ParameterExpression<Long> userIdParam = criteriaBuilder.parameter(Long.class);
+        ParameterExpression<Long> courseIdParam = criteriaBuilder.parameter(Long.class);
+        criteriaQuery
+                .select(userCourseRoot)
+                .where(criteriaBuilder.equal(userCourseRoot.get(USER_ID), userIdParam),
+                        criteriaBuilder.equal(userCourseRoot.get(COURSE_ID), courseIdParam)
+                );
+        TypedQuery<UserCourse> userCourseTypedQuery = entityManager.createQuery(criteriaQuery);
+        userCourseTypedQuery.setParameter(userIdParam, userId);
+        userCourseTypedQuery.setParameter(courseIdParam, courseId);
         return userCourseTypedQuery.getResultList();
     }
 
-    private CriteriaQuery<UserCourse> getUserCourseCriteriaQuery() {
+    @Override
+    public List<UserCourse> findByUserId(Long userId) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
         CriteriaQuery<UserCourse> criteriaQuery = criteriaBuilder.createQuery(UserCourse.class);
         Root<UserCourse> userCourseRoot = criteriaQuery.from(UserCourse.class);
+        ParameterExpression<Long> userIdParam = criteriaBuilder.parameter(Long.class);
         criteriaQuery
                 .select(userCourseRoot)
-                .where(criteriaBuilder.equal(userCourseRoot.get(USER_ID), Long.class),
-                        criteriaBuilder.equal(userCourseRoot.get(COURSE_ID), Long.class));
-        return criteriaQuery;
+                .where(criteriaBuilder.equal(userCourseRoot.get(USER_ID), userIdParam));
+        TypedQuery<UserCourse> userCourseTypedQuery = entityManager.createQuery(criteriaQuery);
+        userCourseTypedQuery.setParameter(userIdParam, userId);
+        return userCourseTypedQuery.getResultList();
     }
 }

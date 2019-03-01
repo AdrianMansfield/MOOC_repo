@@ -1,20 +1,16 @@
 DROP DATABASE IF EXISTS moocproject;
 CREATE DATABASE moocproject;
-
 CREATE USER moocuser with encrypted password 'root';
 GRANT ALL ON DATABASE moocproject TO moocuser;
-
 CREATE TYPE child_entity_status AS ENUM (
   'not_started',
   'finished'
   );
-
 CREATE TYPE parent_entity_status as ENUM (
   'not_started',
   'in_progress',
   'finished'
   );
-
 CREATE TABLE IF NOT EXISTS USERS
 (
   ID              serial primary key,
@@ -30,7 +26,6 @@ CREATE TABLE IF NOT EXISTS USERS
   CONSTRAINT USERS_ROLE_FKEY FOREIGN KEY (ROLE)
     REFERENCES AUTHORITY (ID) ON DELETE RESTRICT ON UPDATE CASCADE
 );
-
 CREATE TABLE IF NOT EXISTS COURSES
 (
   ID         serial primary key,
@@ -39,7 +34,6 @@ CREATE TABLE IF NOT EXISTS COURSES
   CONSTRAINT COURSES_CREATOR_ID_FKEY FOREIGN KEY (CREATOR_ID)
     REFERENCES USERS (ID) ON DELETE RESTRICT ON UPDATE CASCADE
 );
-
 CREATE TABLE IF NOT EXISTS MODULES
 (
   ID          serial primary key,
@@ -51,7 +45,6 @@ CREATE TABLE IF NOT EXISTS MODULES
   CONSTRAINT MODULES_COURSE_ID_FKEY FOREIGN KEY (COURSE_ID)
     REFERENCES COURSES (ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE IF NOT EXISTS LESSONS
 (
   ID        serial primary key,
@@ -61,7 +54,6 @@ CREATE TABLE IF NOT EXISTS LESSONS
   CONSTRAINT LESSONS_MODULE_ID_FKEY FOREIGN KEY (MODULE_ID)
     REFERENCES MODULES (ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE IF NOT EXISTS LESSONS_ITEMS
 (
   ID        serial primary key,
@@ -73,7 +65,6 @@ CREATE TABLE IF NOT EXISTS LESSONS_ITEMS
   CONSTRAINT LESSONS_ITEMS_LESSON_ID_FKEY FOREIGN KEY (LESSON_ID)
     REFERENCES LESSONS (ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 CREATE TABLE IF NOT EXISTS USERS_COURSES
 (
   ID        serial primary key,
@@ -86,7 +77,6 @@ CREATE TABLE IF NOT EXISTS USERS_COURSES
     REFERENCES COURSES (ID) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (USER_ID, COURSE_ID)
 );
-
 CREATE TABLE IF NOT EXISTS USERS_MODULES
 (
   ID        serial primary key,
@@ -99,7 +89,6 @@ CREATE TABLE IF NOT EXISTS USERS_MODULES
     REFERENCES MODULES (ID) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (USER_ID, MODULE_ID)
 );
-
 CREATE TABLE IF NOT EXISTS USERS_LESSONS
 (
   ID        serial primary key,
@@ -112,7 +101,6 @@ CREATE TABLE IF NOT EXISTS USERS_LESSONS
     REFERENCES LESSONS (ID) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (USER_ID, LESSON_ID)
 );
-
 CREATE TABLE IF NOT EXISTS USERS_LESSON_ITEMS
 (
   ID             serial primary key,
@@ -125,13 +113,11 @@ CREATE TABLE IF NOT EXISTS USERS_LESSON_ITEMS
     REFERENCES LESSONS_ITEMS (ID) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (USER_ID, LESSON_ITEM_ID)
 );
-
 CREATE TABLE IF NOT EXISTS AUTHORITY
 (
   ID   serial primary key,
   NAME varchar(30) not null
 );
-
 CREATE TABLE USER_AUTHORITY
 (
   USER_ID      bigint,
@@ -146,6 +132,7 @@ CREATE OR REPLACE VIEW USER_COURSE_VIEW AS
 SELECT C.ID AS COURSE_ID,
        C.title,
        C.creator_id,
+       users_courses.id,
        users_courses.user_id,
        users_courses.status
 FROM USERS_COURSES
@@ -158,6 +145,7 @@ SELECT m.id AS MODULE_ID,
        m.title_img,
        m."order",
        m.course_id,
+       users_modules.id,
        users_modules.user_id,
        users_modules.status
 FROM users_modules
@@ -168,6 +156,7 @@ SELECT l.id AS LESSON_ID,
        l.title,
        l."order",
        l.module_id,
+       users_lessons.id,
        users_lessons.user_id,
        users_lessons.status
 FROM users_lessons
@@ -180,6 +169,7 @@ SELECT li.id AS LESSON_ITEM_ID,
        li.content,
        li.title_img,
        li.lesson_id,
+       users_lesson_items.id,
        users_lesson_items.user_id,
        users_lesson_items.status
 FROM users_lesson_items

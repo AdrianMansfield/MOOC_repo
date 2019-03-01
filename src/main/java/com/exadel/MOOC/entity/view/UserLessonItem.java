@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Immutable
 @Table(name = "user_lesson_item_view")
 @NoArgsConstructor
 @Getter
@@ -18,6 +17,9 @@ public class UserLessonItem {
 
     @Id
     private Long id;
+
+    @Column(name = "lesson_item_id")
+    private Long lessonItemId;
 
     @Column(name = "name")
     private String name;

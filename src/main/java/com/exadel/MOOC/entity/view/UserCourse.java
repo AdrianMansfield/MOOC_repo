@@ -2,6 +2,7 @@ package com.exadel.MOOC.entity.view;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.Column;
@@ -10,14 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Immutable
 @Table(name = "user_course_view")
 @NoArgsConstructor
 @Getter
+@Setter
 public class UserCourse {
 
     @Id
     private Long id;
+
+    @Column(name = "course_id")
+    private Long courseId;
 
     @Column(name = "title")
     private String title;

@@ -9,35 +9,47 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
 public class UserModuleViewRepository implements IUserModuleViewRepository {
 
-    private static final String USER_ID = "user_id";
-    private static final String MODULE_ID = "id";
+    private static final String USER_ID = "userId";
+    private static final String MODULE_ID = "moduleId";
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public List<UserModule> findByUserIdAndModuleId(Long userId, Long moduleId) {
-        TypedQuery<UserModule> userModuleTypedQuery = entityManager.createQuery(getUserModuleCriteriaQuery());
-        userModuleTypedQuery.setParameter(USER_ID, userId);
-        userModuleTypedQuery.setParameter(MODULE_ID, moduleId);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<UserModule> criteriaQuery = criteriaBuilder.createQuery(UserModule.class);
+        Root<UserModule> userModuleRoot = criteriaQuery.from(UserModule.class);
+        ParameterExpression<Long> userIdParam = criteriaBuilder.parameter(Long.class);
+        ParameterExpression<Long> moduleIdParam = criteriaBuilder.parameter(Long.class);
+        criteriaQuery
+                .select(userModuleRoot)
+                .where(criteriaBuilder.equal(userModuleRoot.get(USER_ID), userIdParam),
+                        criteriaBuilder.equal(userModuleRoot.get(MODULE_ID), moduleIdParam));
+        TypedQuery<UserModule> userModuleTypedQuery = entityManager.createQuery(criteriaQuery);
+        userModuleTypedQuery.setParameter(userIdParam, userId);
+        userModuleTypedQuery.setParameter(moduleIdParam, moduleId);
         return userModuleTypedQuery.getResultList();
     }
 
-    private CriteriaQuery<UserModule> getUserModuleCriteriaQuery() {
+    @Override
+    public List<UserModule> findByUserId(Long userId) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
         CriteriaQuery<UserModule> criteriaQuery = criteriaBuilder.createQuery(UserModule.class);
         Root<UserModule> userModuleRoot = criteriaQuery.from(UserModule.class);
+        ParameterExpression<Long> userIdParam = criteriaBuilder.parameter(Long.class);
         criteriaQuery
                 .select(userModuleRoot)
-                .where(criteriaBuilder.equal(userModuleRoot.get(USER_ID), Long.class),
-                        criteriaBuilder.equal(userModuleRoot.get(MODULE_ID), Long.class));
-        return criteriaQuery;
+                .where(criteriaBuilder.equal(userModuleRoot.get(USER_ID), userIdParam));
+        TypedQuery<UserModule> userModuleTypedQuery = entityManager.createQuery(criteriaQuery);
+        userModuleTypedQuery.setParameter(userIdParam, userId);
+        return userModuleTypedQuery.getResultList();
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IUserLessonViewRepository {
     List<UserLesson> findByUserIdAndLessonId(Long userId, Long lessonId);
+
+    List<UserLesson> findByUserId(Long userId);
 }
