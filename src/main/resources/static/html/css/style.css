@@ -41,7 +41,7 @@ nav p {
     align-items: center;
     justify-content: center;
     height: 27rem;
-    background: url(logo-img.jpg) 100% 100% no-repeat;
+    background: url(static/logo-img.jpg) 100% 100% no-repeat;
     background-size: cover;
 }
 

@@ -1,7 +1,7 @@
 package com.exadel.MOOC.web;
 
-import com.exadel.MOOC.service.ICourseService;
 import com.exadel.MOOC.dto.CourseDTO;
+import com.exadel.MOOC.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +41,12 @@ public class CourseController {
     @ResponseBody
     List<CourseDTO> getLatestRow() {
         return courseService.findTop3ByOrderByIdDesc();
+    }
+
+    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    CourseDTO findById(@PathVariable("id") Long id) throws Exception {
+        return courseService.findById(id);
     }
 
 }

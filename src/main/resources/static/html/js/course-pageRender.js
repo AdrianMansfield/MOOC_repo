@@ -21,6 +21,19 @@ fetch('http://localhost:8095/module/find' + courseIdParam)
     console.log('Request failed', error);
 });
 
+fetch('http://localhost:8095/module/find' + courseIdParam)
+    .then(status)
+    .then(json)
+    .then(function (data) {
+        drawCurrentCourseModule(data)
+    }).catch(function (error) {
+    console.log('Request failed', error);
+});
+
+function drawCourseTitleAndAuthor(jsonData) {
+
+}
+
 function drawCurrentCourseModule(jsonData) {
     let cardDeck = document.getElementsByClassName('card-columns');
     jsonData.forEach(function (module) {
@@ -28,7 +41,7 @@ function drawCurrentCourseModule(jsonData) {
         card.setAttribute('class', 'card bg-dark');
         let moduleImg = document.createElement('img');
         moduleImg.setAttribute('class', 'card-img-top');
-        moduleImg.setAttribute('src', '../static/logo-img.jpg');
+        moduleImg.setAttribute('src', 'logo-img.jpg');
         card.appendChild(moduleImg);
         let cardBody = document.createElement('div');
         cardBody.setAttribute('class', 'card-body text-light');

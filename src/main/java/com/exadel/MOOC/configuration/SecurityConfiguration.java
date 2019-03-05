@@ -42,15 +42,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/course/three-latest","/hello").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
+                .formLogin()
+                .successForwardUrl("/perform_login")
+                .defaultSuccessUrl("/index.html")
+                .failureForwardUrl("/")
+                .permitAll()
+                .and()
                 .logout()
                 .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true);
+                .permitAll();
     }
-
 
 }

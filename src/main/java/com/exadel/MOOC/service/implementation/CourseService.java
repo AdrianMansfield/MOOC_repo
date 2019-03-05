@@ -1,9 +1,9 @@
 package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.ICourseRepository;
-import com.exadel.MOOC.service.ICourseService;
 import com.exadel.MOOC.dto.CourseDTO;
 import com.exadel.MOOC.mapper.CourseMapper;
+import com.exadel.MOOC.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +42,10 @@ public class CourseService implements ICourseService {
     @Override
     public List<CourseDTO> findTop3ByOrderByIdDesc() {
         return courseRepository.findTop3ByOrderByIdDesc().stream().map(courseMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public CourseDTO findById(Long id) throws RuntimeException {
+        return courseMapper.toDTO(courseRepository.findById(id).orElseThrow(RuntimeException::new));
     }
 }
