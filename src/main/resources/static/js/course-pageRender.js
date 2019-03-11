@@ -95,7 +95,7 @@ function drawCurrentCourseModule(jsonData) {
         cardBody.appendChild(cardText);
         let goToModuleLink = document.createElement('a');
         goToModuleLink.setAttribute('class', 'btn btn-sm btn-primary');
-        goToModuleLink.setAttribute('href', '/lesson-page?moduleId=' + module.moduleId);
+        goToModuleLink.setAttribute('href', '/lesson-page?moduleId=' + module.id);
         goToModuleLink.innerText = 'go to module';
         cardBody.appendChild(goToModuleLink);
         cardDeck[0].appendChild(card);

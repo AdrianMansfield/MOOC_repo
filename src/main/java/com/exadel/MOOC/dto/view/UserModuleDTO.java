@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 public class UserModuleDTO implements Serializable {
-    private Long moduleId;
+    private Long id;
     private String title;
     private String description;
     private String titleImg;

@@ -16,7 +16,7 @@ public class UserModuleMapper {
         return UserModuleDTO.builder()
                 .courseId(userModule.getCourseId())
                 .description(userModule.getDescription())
-                .moduleId(userModule.getId())
+                .id(userModule.getId())
                 .order(userModule.getOrder())
                 .status(userModule.getStatus())
                 .title(userModule.getTitle())
