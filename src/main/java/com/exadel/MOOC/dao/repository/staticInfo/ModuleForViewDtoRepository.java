@@ -48,6 +48,10 @@ public class ModuleForViewDtoRepository implements IModuleForViewDto {
                         return collection;
                     }
                 });
-        return Optional.ofNullable((ModuleForViewDto) criteria.list().get(0));
+        if (criteria.list().isEmpty()) {
+            return Optional.of(new ModuleForViewDto());
+        } else {
+            return Optional.of((ModuleForViewDto) criteria.list().get(0));
+        }
     }
 }

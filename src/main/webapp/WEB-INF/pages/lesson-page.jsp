@@ -25,63 +25,15 @@
         </div>
     </div>
 </nav>
+<div class="text-center" id="module-title">
+    <%--module title here--%>
+</div>
 <div class="row m-auto">
     <div class="col-sm-3" id="lessonContainer">
-        <ul class="list-group list-group-flush text-light">
-            <li class="list-group-item active">
-                first lesson name
-                <span class="badge badge-success badge-pill">done</span>
-
-            </li>
-            <li class="list-group-item">
-                second lesson name
-                <span class="badge badge-success badge-pill">done</span>
-
-            </li>
-            <li class="list-group-item">
-                third lesson name
-                <span class="badge badge-primary badge-pill">in progress</span>
-
-            </li>
-            <li class="list-group-item">
-                fourth lesson name
-                <span class="badge badge-danger badge-pill">not finished</span>
-
-            </li>
-            <li class="list-group-item">
-                fifth module name
-                <span class="badge badge-danger badge-pill">not finished</span>
-            </li>
-        </ul>
+        <%--lesson list here--%>
     </div>
-    <div class="col-sm-9">
-        <div class="text-center">
-            <h1 class="text-light">lesson list</h1>
-        </div>
-
-        <ul class="list-group list-group-flush text-light">
-            <li class="list-group-item">
-                first lesson item name
-                <span class="badge badge-success badge-pill">done</span>
-
-            </li>
-            <li class="list-group-item">
-                second lesson item name
-                <span class="badge badge-success badge-pill">done</span>
-
-            </li>
-            <li class="list-group-item">
-                third lesson item name
-                <span class="badge badge-success badge-pill">done</span>
-
-            </li>
-            <li class="list-group-item">
-                fourth lesson item name
-                <span class="badge badge-success badge-pill">done</span>
-
-            </li>
-        </ul>
-
+    <div class="col-sm-9" id="lessonItemContent">
+        <%--lesson item content here--%>
     </div>
 </div>
 

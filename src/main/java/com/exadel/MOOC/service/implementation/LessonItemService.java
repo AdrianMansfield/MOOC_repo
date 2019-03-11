@@ -1,9 +1,10 @@
 package com.exadel.MOOC.service.implementation;
 
 import com.exadel.MOOC.dao.repository.ILessonItemRepository;
-import com.exadel.MOOC.service.ILessonItemService;
 import com.exadel.MOOC.dto.LessonItemDTO;
 import com.exadel.MOOC.mapper.LessonItemMapper;
+import com.exadel.MOOC.service.ILessonItemService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,11 @@ public class LessonItemService implements ILessonItemService {
     @Override
     public List<LessonItemDTO> findAll() {
         return lessonItemRepository.findAll().stream().map(lessonItemMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public LessonItemDTO findById(Long id) throws NotFoundException {
+        return lessonItemMapper.toDTO(lessonItemRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("lesson item with this id isn't exist")));
     }
 }

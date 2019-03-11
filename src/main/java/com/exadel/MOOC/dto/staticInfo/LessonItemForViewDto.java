@@ -14,8 +14,6 @@ public class LessonItemForViewDto {
     private Long lessonItemId;
     private String name;
     private int order;
-    private String content;
-    private String titleImg;
     private Long lessonId;
     private Long userId;
     private String status;

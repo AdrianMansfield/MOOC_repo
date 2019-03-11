@@ -26,8 +26,6 @@ public class LessonItemForViewDtoRepository implements ILessonItemForViewDto {
                 "select uliv.lesson_item_id as lessonItemId," +
                         "uliv.name as name," +
                         "uliv.order as \"order\"," +
-                        "uliv.content as content," +
-                        "uliv.title_img as titleImg," +
                         "uliv.lesson_id as lessonId," +
                         "uliv.user_id as userId," +
                         "uliv.status as status " +
@@ -39,8 +37,6 @@ public class LessonItemForViewDtoRepository implements ILessonItemForViewDto {
                 .addScalar("lessonItemId", LongType.INSTANCE)
                 .addScalar("name", StringType.INSTANCE)
                 .addScalar("order", IntegerType.INSTANCE)
-                .addScalar("content", StringType.INSTANCE)
-                .addScalar("titleImg", StringType.INSTANCE)
                 .addScalar("lessonId", LongType.INSTANCE)
                 .addScalar("userId", LongType.INSTANCE)
                 .addScalar("status", StringType.INSTANCE)
