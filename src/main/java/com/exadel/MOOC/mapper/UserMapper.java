@@ -31,6 +31,7 @@ public class UserMapper {
 
     public UserForViewDTO toDTO(User user) {
         return UserForViewDTO.builder()
+                .id(user.getId())
                 .userName(user.getUserName())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())

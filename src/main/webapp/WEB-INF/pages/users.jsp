@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +10,19 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body class="bg-secondary">
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
-        <span class="navbar-brand mb-0 h1">MOOC-project</span>
-        <form class="form-inline my-2 my-lg-0">
-            <span class="text-light mr-sm-2">admin</span>
-            <button class="btn btn-outline-light my-2 my-sm-0 btn-sm" type="submit">Sign out</button>
-        </form>
+        <a class="navbar-brand mb-0 h1" href="/">MOOC-project</a>
+        <div class="text-right">
+            <sec:authorize access="isAuthenticated()">
+                <span class="text-light"><sec:authentication property="principal.username"/></span>
+                <a class="btn btn-outline-light btn-sm text-light" href="/logout">Log out</a>
+            </sec:authorize>
+        </div>
     </div>
 </nav>
 <div class="container">
@@ -146,6 +150,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="js/indexRender.js"></script>
+<script src="/js/indexRender.js"></script>
 </body>
 </html>

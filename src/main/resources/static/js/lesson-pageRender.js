@@ -16,7 +16,7 @@ fetch('http://localhost:8095/lesson/find' + moduleIdParam)
     .then(status)
     .then(json)
     .then(function (data) {
-        drawCurrentModuleLessons(data)
+        drawLessonAndLessonItemList(data)
     }).catch(function (error) {
     console.log('Request failed', error);
 });

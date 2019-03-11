@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 public class UserForViewDTO implements Serializable {
+    private Long id;
     private String userName;
     private String firstName;
     private String lastName;

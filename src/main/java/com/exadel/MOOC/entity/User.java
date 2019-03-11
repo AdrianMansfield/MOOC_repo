@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @DynamicInsert
 @DynamicUpdate
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,7 +46,7 @@ public class User {
     @ManyToOne(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "role")
-    private Authority role;
+    private Role role;
 
     @Column(name = "password")
     private String password;

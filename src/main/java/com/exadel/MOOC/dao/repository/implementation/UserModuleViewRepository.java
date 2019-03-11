@@ -18,6 +18,7 @@ public class UserModuleViewRepository implements IUserModuleViewRepository {
 
     private static final String USER_ID = "userId";
     private static final String MODULE_ID = "moduleId";
+    private static final String COURSE_ID = "courseId";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -51,5 +52,23 @@ public class UserModuleViewRepository implements IUserModuleViewRepository {
         TypedQuery<UserModule> userModuleTypedQuery = entityManager.createQuery(criteriaQuery);
         userModuleTypedQuery.setParameter(userIdParam, userId);
         return userModuleTypedQuery.getResultList();
+    }
+
+    @Override
+    public List<UserModule> findByUserIdAndCourseId(Long userId, Long courseId) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<UserModule> criteriaQuery = criteriaBuilder.createQuery(UserModule.class);
+        Root<UserModule> userModuleRoot = criteriaQuery.from(UserModule.class);
+        ParameterExpression<Long> userIdParam = criteriaBuilder.parameter(Long.class);
+        ParameterExpression<Long> courseIdParam = criteriaBuilder.parameter(Long.class);
+        criteriaQuery
+                .select(userModuleRoot)
+                .where(criteriaBuilder.equal(userModuleRoot.get(USER_ID), userIdParam),
+                        criteriaBuilder.equal(userModuleRoot.get(COURSE_ID), courseIdParam));
+        TypedQuery<UserModule> userModuleTypedQuery = entityManager.createQuery(criteriaQuery);
+        userModuleTypedQuery.setParameter(userIdParam, userId);
+        userModuleTypedQuery.setParameter(courseIdParam, courseId);
+        return userModuleTypedQuery.getResultList();
+
     }
 }

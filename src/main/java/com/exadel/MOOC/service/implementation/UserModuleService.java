@@ -31,4 +31,10 @@ public class UserModuleService implements IUserModuleService {
         return userModuleViewRepository.findByUserId(userId).stream()
                 .map(mapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<UserModuleDTO> findByUserIdAndCourseId(Long userId, Long courseId) {
+        return userModuleViewRepository.findByUserIdAndCourseId(userId,courseId).stream()
+                .map(mapper::toDTO).collect(Collectors.toList());
+    }
 }

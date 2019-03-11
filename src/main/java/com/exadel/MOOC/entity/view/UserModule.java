@@ -1,6 +1,5 @@
 package com.exadel.MOOC.entity.view;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -34,7 +34,7 @@ function drawThreeLastCourse(jsonData) {
         cardAuthor.innerHTML = course.creator.userName;
         let goToCourseLink = document.createElement('a');
         goToCourseLink.setAttribute('class', 'btn btn-sm btn-primary');
-        goToCourseLink.setAttribute('href', 'course-page.html?courseId=' + course.id);
+        goToCourseLink.setAttribute('href', '/course-page?courseId=' + course.id);
         goToCourseLink.innerText = 'go to course';
         cardBody.appendChild(cardAuthor);
         cardBody.appendChild(goToCourseLink);

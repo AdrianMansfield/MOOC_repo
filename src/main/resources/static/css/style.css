@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
 
-.navbar span {
+.navbar a {
     font-family: 'Titillium Web', sans-serif;
 }
 
@@ -41,7 +41,7 @@ nav p {
     align-items: center;
     justify-content: center;
     height: 27rem;
-    background: url(static/logo-img.jpg) 100% 100% no-repeat;
+    background: url(../picture/logo-img.jpg) 100% 100% no-repeat;
     background-size: cover;
 }
 
@@ -85,5 +85,9 @@ nav p {
 }
 
 .text-center{
-    font-family: "Roboto Slab";
+    font-family: "Roboto Slab", sans-serif;
+}
+
+form{
+    display: inline;
 }

@@ -1,9 +1,13 @@
 package com.exadel.MOOC.web;
 
 import com.exadel.MOOC.dto.view.UserModuleDTO;
+import com.exadel.MOOC.security.CustomUser;
 import com.exadel.MOOC.service.IUserModuleService;
+import com.exadel.MOOC.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +19,9 @@ public class UserModuleController {
 
     @Autowired
     private IUserModuleService userModuleService;
+
+    @Autowired
+    private IUserService userService;
 
 
     @RequestMapping(value = "/specific-module", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,5 +35,13 @@ public class UserModuleController {
     @ResponseBody
     List<UserModuleDTO> findByUserId(@RequestParam("userId") Long userId) {
         return userModuleService.findByUserId(userId);
+    }
+
+    @RequestMapping(value = "/modules-by-course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    List<UserModuleDTO> findByUserIdAndCourseId(@RequestParam("courseId") Long courseId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUser customUser = (CustomUser) authentication.getPrincipal();
+        return userModuleService.findByUserIdAndCourseId(customUser.getUserId(), courseId);
     }
 }

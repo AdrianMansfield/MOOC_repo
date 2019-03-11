@@ -43,9 +43,9 @@ public class CourseController {
         return courseService.findTop3ByOrderByIdDesc();
     }
 
-    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/find", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    CourseDTO findById(@PathVariable("id") Long id) throws Exception {
+    CourseDTO findById(@RequestParam("courseId") Long id) throws Exception {
         return courseService.findById(id);
     }
 
