@@ -11,6 +11,7 @@ function json(response) {
 }
 
 let courseIdParam = new URL(window.location.href).search;
+let courseId = new URL(window.location.href).searchParams.get('courseId');
 
 
 fetch('http://localhost:8095/security/isAnonymous')
@@ -18,49 +19,75 @@ fetch('http://localhost:8095/security/isAnonymous')
     .then(json)
     .then(function (data) {
         if (data) {
-            fetch('http://localhost:8095/module/find' + courseIdParam)
-                .then(status)
-                .then(json)
-                .then(function (data) {
-                    drawCurrentCourseModule(data)
-                }).catch(function (error) {
-                console.log('Request failed', error);
-            });
+            renderDataForNonAuthorizedUser();
         } else {
-            fetch('http://localhost:8095/user-to-module/modules-by-course' + courseIdParam)
-                .then(status)
-                .then(json)
-                .then(function (data) {
-                    drawCurrentCourseModule(data);
-                    console.log(data)
-                }).catch(function (error) {
-                console.log('Request failed', error);
-            });
+            renderDataForAuthorizedUser();
         }
     }).catch(function (error) {
     console.log(error);
 });
 
 
-fetch('http://localhost:8095/course/find' + courseIdParam)
-    .then(status)
-    .then(json)
-    .then(function (data) {
-        drawCourseTitleAndAuthor(data)
-    }).catch(function (error) {
-    console.log('Request failed', error);
-});
+function renderDataForAuthorizedUser() {
+    fetch('http://localhost:8095/static-info/course-info' + courseIdParam)
+        .then(status)
+        .then(json)
+        .then(function (data) {
+            drawCourseTitleAndAuthor(data);
+            if (data.status === 'not_started') {
+                renderSubscribeButton();
+            }
+            drawCurrentCourseModule(data.moduleDTOS);
+        }).catch(function (error) {
+        console.log('Request failed', error);
+    });
+}
+
+
+function renderDataForNonAuthorizedUser() {
+    fetch('http://localhost:8095/module/find' + courseIdParam)
+        .then(status)
+        .then(json)
+        .then(function (data) {
+            fetch('http://localhost:8095/course/find' + courseIdParam)
+                .then(status)
+                .then(json)
+                .then(function (data) {
+                    drawCourseTitleAndAuthor(data)
+                }).catch(function (error) {
+                console.log('Request failed', error);
+            });
+            drawCurrentCourseModule(data)
+        }).catch(function (error) {
+        console.log('Request failed', error);
+    });
+}
 
 function drawCourseTitleAndAuthor(jsonData) {
     let courseHeader = document.getElementById("course-title");
     courseHeader.innerText = jsonData.title;
     let courseAuthor = document.getElementById("course-author");
     courseAuthor.innerText = jsonData.creator.userName;
+    if (jsonData.hasOwnProperty('status')) {
+        let courseStatus = document.createElement('span');
+        courseStatus.setAttribute('id','courseStatusBadgee');
+        if (jsonData.status === 'finished') {
+            courseStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
+            courseStatus.innerText = 'finished';
+        } else if (jsonData.status === "not_started") {
+            courseStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
+            courseStatus.innerText = 'not started';
+        } else {
+            courseStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
+            courseStatus.innerText = "in process";
+        }
+        courseHeader.appendChild(courseStatus);
+    }
 }
-
 
 function drawCurrentCourseModule(jsonData) {
     let cardDeck = document.getElementsByClassName('card-columns');
+    console.log(jsonData);
     jsonData.forEach(function (module) {
         let card = document.createElement('div');
         card.setAttribute('class', 'card bg-dark');
@@ -100,4 +127,41 @@ function drawCurrentCourseModule(jsonData) {
         cardBody.appendChild(goToModuleLink);
         cardDeck[0].appendChild(card);
     });
+}
+
+
+function subscribeToCourse() {
+    fetch('http://localhost:8095/course-actions/subscribe', {
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: courseId
+    })
+        .then(json)
+        .then(function (data) {
+            console.log('Request succeeded with JSON response', data);
+            changeDataOnPage();
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
+}
+
+function renderSubscribeButton() {
+    let courseActionButtonContainer = document.getElementById('courseActionButton');
+    let subscribeButton = document.createElement('button');
+    subscribeButton.setAttribute('class', 'btn btn-success text-center');
+    subscribeButton.setAttribute('id', 'subButton');
+    subscribeButton.innerText = 'subscribe';
+    subscribeButton.onclick = subscribeToCourse;
+    courseActionButtonContainer.appendChild(subscribeButton);
+}
+
+function changeDataOnPage() {
+    let subButtonContainer = document.getElementById('courseActionButton');
+    subButtonContainer.removeChild(subButtonContainer.firstChild);
+    let courseStatus = document.getElementById('courseStatusBadgee');
+    courseStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
+    courseStatus.innerText = "in process";
 }

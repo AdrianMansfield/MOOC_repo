@@ -42,11 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors().disable()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/course/three-latest","/index","/"
                         ,"/resources/static/**","/module/*","/course-page"
                         ,"/course/*","/picture/*","/css/*","/js/*","/security/isAnonymous"
-                ,"/lesson-lesson-item","/security/test").permitAll()
+                ,"/lesson-lesson-item","/security/test","/user-to-module/modules-by-course").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

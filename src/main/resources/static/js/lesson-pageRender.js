@@ -12,7 +12,7 @@ function json(response) {
 
 let moduleIdParam = new URL(window.location.href).search;
 
-fetch('http://localhost:8095/module-info/full-info/' + moduleIdParam)
+fetch('http://localhost:8095/static-info/module-info/' + moduleIdParam)
     .then(status)
     .then(json)
     .then(function (data) {

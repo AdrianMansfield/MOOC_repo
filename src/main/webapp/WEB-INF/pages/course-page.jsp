@@ -35,6 +35,10 @@
     <hr>
     <h2 class="course-author text-center" id="course-author"></h2>
 
+    <sec:authorize access="isAuthenticated()">
+        <div class="text-center mb-3" id="courseActionButton"></div>
+    </sec:authorize>
+
     <div class="card-columns text-center"></div>
 </div>
 
