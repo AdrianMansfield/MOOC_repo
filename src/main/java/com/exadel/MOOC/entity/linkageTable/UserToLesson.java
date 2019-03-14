@@ -30,7 +30,7 @@ public class UserToLesson {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "lessons_id")
+    @Column(name = "lesson_id")
     private Long lessonId;
 
     @Enumerated(EnumType.STRING)
