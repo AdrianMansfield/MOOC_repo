@@ -1,6 +1,5 @@
 package com.exadel.MOOC.entity.view;
 
-import com.exadel.MOOC.entity.itemType.ParentEntityStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -1,18 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>MOOC-project</title>
+    <title>course page</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css"/>
-
 </head>
 <body class="bg-secondary">
 
@@ -31,19 +29,17 @@
     </div>
 </nav>
 
-<div class="img-container">
-    <sec:authorize access="isAuthenticated()" var="isAuthorizeAny">
+<div class="container mt-3 mb-3" id="Course header">
 
+    <h1 class="course-name text-center" id="course-title"></h1>
+    <hr>
+    <h2 class="course-author text-center" id="course-author"></h2>
+
+    <sec:authorize access="isAuthenticated()">
+        <div class="text-center mb-3" id="courseActionButton"></div>
     </sec:authorize>
-    <img src="/picture/logo-img.jpg" class="img-fluid" alt="logo-img">
-    <div class="centered">Another MOOC platform for education.</div>
-</div>
 
-<nav class="navbar navbar-dark bg-dark text-center">
-    <p class="text-light w-100 m-auto">course list</p>
-</nav>
-<div class="container mt-3 mb-3">
-    <div class="card-deck"></div>
+    <div class="card-columns text-center"></div>
 </div>
 
 
@@ -56,8 +52,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="/js/indexRender.js"></script>
-
-
+<script src="/js/course-preview-pageRender.js"></script>
 </body>
 </html>

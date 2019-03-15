@@ -14,75 +14,39 @@ let courseIdParam = new URL(window.location.href).search;
 let courseId = new URL(window.location.href).searchParams.get('courseId');
 
 
-fetch('http://localhost:8095/security/isAnonymous')
+fetch('http://localhost:8095/static-info/course-info' + courseIdParam)
     .then(status)
     .then(json)
     .then(function (data) {
-        if (data) {
-            renderDataForNonAuthorizedUser();
-        } else {
-            renderDataForAuthorizedUser();
+        drawCourseTitleAndAuthor(data);
+        if (data.status === 'not_started') {
+            renderSubscribeButton();
         }
+        drawCurrentCourseModule(data.moduleDTOS);
     }).catch(function (error) {
-    console.log(error);
+    console.log('Request failed', error);
 });
 
-
-function renderDataForAuthorizedUser() {
-    fetch('http://localhost:8095/static-info/course-info' + courseIdParam)
-        .then(status)
-        .then(json)
-        .then(function (data) {
-            drawCourseTitleAndAuthor(data);
-            if (data.status === 'not_started') {
-                renderSubscribeButton();
-            }
-            drawCurrentCourseModule(data.moduleDTOS);
-        }).catch(function (error) {
-        console.log('Request failed', error);
-    });
-}
-
-
-function renderDataForNonAuthorizedUser() {
-    fetch('http://localhost:8095/module/find' + courseIdParam)
-        .then(status)
-        .then(json)
-        .then(function (data) {
-            fetch('http://localhost:8095/course/find' + courseIdParam)
-                .then(status)
-                .then(json)
-                .then(function (data) {
-                    drawCourseTitleAndAuthor(data)
-                }).catch(function (error) {
-                console.log('Request failed', error);
-            });
-            drawCurrentCourseModule(data)
-        }).catch(function (error) {
-        console.log('Request failed', error);
-    });
-}
 
 function drawCourseTitleAndAuthor(jsonData) {
     let courseHeader = document.getElementById("course-title");
     courseHeader.innerText = jsonData.title;
     let courseAuthor = document.getElementById("course-author");
     courseAuthor.innerText = jsonData.creator.userName;
-    if (jsonData.hasOwnProperty('status')) {
-        let courseStatus = document.createElement('span');
-        courseStatus.setAttribute('id','courseStatusBadgee');
-        if (jsonData.status === 'finished') {
-            courseStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
-            courseStatus.innerText = 'finished';
-        } else if (jsonData.status === "not_started") {
-            courseStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
-            courseStatus.innerText = 'not started';
-        } else {
-            courseStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
-            courseStatus.innerText = "in process";
-        }
-        courseHeader.appendChild(courseStatus);
+    // if (jsonData.hasOwnProperty('status')) {
+    let courseStatus = document.createElement('span');
+    courseStatus.setAttribute('id', 'courseStatusBadgee');
+    if (jsonData.status === 'finished') {
+        courseStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
+        courseStatus.innerText = 'finished';
+    } else if (jsonData.status === "not_started") {
+        courseStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
+        courseStatus.innerText = 'not started';
+    } else {
+        courseStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
+        courseStatus.innerText = "in process";
     }
+    courseHeader.appendChild(courseStatus);
 }
 
 function drawCurrentCourseModule(jsonData) {
@@ -102,20 +66,18 @@ function drawCurrentCourseModule(jsonData) {
         cardTitle.setAttribute('class', 'card-title d-inline');
         cardTitle.innerText = module.title;
         cardBody.appendChild(cardTitle);
-        if (module.hasOwnProperty("status")) {
-            let moduleStatus = document.createElement('span');
-            if (module.status === 'finished') {
-                moduleStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
-                moduleStatus.innerText = 'finished';
-            } else if (module.status === "not_started") {
-                moduleStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
-                moduleStatus.innerText = 'not started';
-            } else {
-                moduleStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
-                moduleStatus.innerText = "in process";
-            }
-            cardBody.appendChild(moduleStatus);
+        let moduleStatus = document.createElement('span');
+        if (module.status === 'finished') {
+            moduleStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
+            moduleStatus.innerText = 'finished';
+        } else if (module.status === "not_started") {
+            moduleStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
+            moduleStatus.innerText = 'not started';
+        } else {
+            moduleStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
+            moduleStatus.innerText = "in process";
         }
+        cardBody.appendChild(moduleStatus);
         let cardText = document.createElement('p');
         cardText.setAttribute('class', 'card-text');
         cardText.innerText = module.description;
