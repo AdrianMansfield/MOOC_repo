@@ -1,7 +1,7 @@
 package com.exadel.MOOC.web;
 
 import com.exadel.MOOC.dto.view.UserLessonItemDTO;
-import com.exadel.MOOC.service.IUserLessonItemService;
+import com.exadel.MOOC.service.view.IUserLessonItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

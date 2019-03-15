@@ -1,6 +1,6 @@
 package com.exadel.MOOC.service.linkageTable;
 
-import com.exadel.MOOC.dao.repository.linkageTable.IUserToLessonRepository;
+import com.exadel.MOOC.repository.linkageTable.IUserToLessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

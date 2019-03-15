@@ -2,7 +2,7 @@ package com.exadel.MOOC.web;
 
 import com.exadel.MOOC.dto.view.UserModuleDTO;
 import com.exadel.MOOC.security.CustomUser;
-import com.exadel.MOOC.service.IUserModuleService;
+import com.exadel.MOOC.service.view.IUserModuleService;
 import com.exadel.MOOC.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

@@ -1,6 +1,6 @@
 package com.exadel.MOOC.mapper;
 
-import com.exadel.MOOC.dao.repository.IUserRepository;
+import com.exadel.MOOC.repository.IUserRepository;
 import com.exadel.MOOC.dto.CourseDTO;
 import com.exadel.MOOC.dto.UserForViewDTO;
 import com.exadel.MOOC.entity.Course;

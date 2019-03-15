@@ -1,6 +1,6 @@
 package com.exadel.MOOC.mapper;
 
-import com.exadel.MOOC.dao.repository.ILessonRepository;
+import com.exadel.MOOC.repository.ILessonRepository;
 import com.exadel.MOOC.dto.LessonItemDTO;
 import com.exadel.MOOC.entity.LessonsItem;
 import org.springframework.beans.factory.annotation.Autowired;

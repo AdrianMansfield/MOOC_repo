@@ -1,6 +1,6 @@
 package com.exadel.MOOC.security;
 
-import com.exadel.MOOC.dao.repository.IUserRepository;
+import com.exadel.MOOC.repository.IUserRepository;
 import com.exadel.MOOC.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

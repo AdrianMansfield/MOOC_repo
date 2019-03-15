@@ -1,6 +1,6 @@
 package com.exadel.MOOC.mapper.view;
 
-import com.exadel.MOOC.dao.repository.implementation.UserLessonViewRepository;
+import com.exadel.MOOC.repository.view.UserLessonViewRepository;
 import com.exadel.MOOC.dto.view.UserLessonDTO;
 import com.exadel.MOOC.entity.view.UserLesson;
 import org.springframework.beans.factory.annotation.Autowired;

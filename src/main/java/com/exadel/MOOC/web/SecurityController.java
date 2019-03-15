@@ -1,6 +1,6 @@
 package com.exadel.MOOC.web;
 
-import com.exadel.MOOC.dao.repository.staticInfo.IModuleForViewDto;
+import com.exadel.MOOC.repository.view.staticInfo.IModuleForViewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
