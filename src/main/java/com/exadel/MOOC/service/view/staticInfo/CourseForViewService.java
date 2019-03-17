@@ -15,12 +15,14 @@ import java.util.List;
 @Service
 public class CourseForViewService implements ICourseForViewService {
 
+    //TODO add interface call
     @Autowired
     private UserModuleService userModuleService;
 
     @Autowired
     private IUserCourseViewRepository userCourseViewRepository;
 
+    //TODO add interface call
     @Autowired
     private CourseService courseService;
 

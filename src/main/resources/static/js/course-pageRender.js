@@ -33,7 +33,6 @@ function drawCourseTitleAndAuthor(jsonData) {
     courseHeader.innerText = jsonData.title;
     let courseAuthor = document.getElementById("course-author");
     courseAuthor.innerText = jsonData.creator.userName;
-    // if (jsonData.hasOwnProperty('status')) {
     let courseStatus = document.createElement('span');
     courseStatus.setAttribute('id', 'courseStatusBadgee');
     if (jsonData.status === 'finished') {
@@ -60,7 +59,7 @@ function drawCurrentCourseModule(jsonData) {
         moduleImg.setAttribute('src', '/picture/logo-img.jpg');
         card.appendChild(moduleImg);
         let cardBody = document.createElement('div');
-        cardBody.setAttribute('class', 'card-body text-light');
+        cardBody.setAttribute('class', 'card-body');
         card.appendChild(cardBody);
         let cardTitle = document.createElement('h5');
         cardTitle.setAttribute('class', 'card-title d-inline');

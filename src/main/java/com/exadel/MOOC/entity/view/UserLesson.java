@@ -2,7 +2,6 @@ package com.exadel.MOOC.entity.view;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Immutable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.Table;
 public class UserLesson {
 
     @Id
-    private Long id;
-
     @Column(name = "lesson_id")
     private Long lessonId;
 

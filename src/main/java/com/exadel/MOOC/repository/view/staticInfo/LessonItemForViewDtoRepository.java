@@ -30,7 +30,7 @@ public class LessonItemForViewDtoRepository implements ILessonItemForViewDto {
                         "uliv.user_id as userId," +
                         "uliv.status as status " +
                         "from user_lesson_item_view uliv " +
-                        "where uliv.user_id=:userId and uliv.lesson_id=:lessonId")
+                        "where (uliv.user_id=:userId or uliv.user_id = -99) and uliv.lesson_id=:lessonId order by \"order\"")
                 .setParameter("userId", userId)
                 .setParameter("lessonId", lessonId)
                 .unwrap(NativeQuery.class)

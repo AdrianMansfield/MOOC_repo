@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserLessonMapper {
 
+    //TODO add interface call
     @Autowired
     private UserLessonViewRepository userLessonViewRepository;
 
     public UserLessonDTO toDTO(UserLesson userLesson) {
         return UserLessonDTO.builder()
-                .lessonId(userLesson.getId())
+                .lessonId(userLesson.getLessonId())
                 .moduleId(userLesson.getModuleId())
                 .order(userLesson.getOrder())
                 .status(userLesson.getStatus())

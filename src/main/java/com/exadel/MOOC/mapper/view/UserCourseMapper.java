@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserCourseMapper {
 
+    //TODO add interface call or delete
     @Autowired
     private UserCourseViewRepository userCourseViewRepository;
 

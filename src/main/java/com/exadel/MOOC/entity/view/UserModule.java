@@ -14,15 +14,13 @@ import javax.persistence.Table;
 @Getter
 public class UserModule {
 
-    @Id
-    private Long id;
-
     @Column(name = "module_id")
     private Long moduleId;
 
     @Column(name = "title")
     private String title;
 
+    @Id
     @Column(name = "description")
     private String description;
 
@@ -38,6 +36,6 @@ public class UserModule {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 }

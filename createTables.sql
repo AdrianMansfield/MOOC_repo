@@ -139,38 +139,37 @@ FROM USERS_COURSES
        INNER JOIN COURSES C on USERS_COURSES.COURSE_ID = C.ID;
 
 CREATE OR REPLACE VIEW USER_MODULE_VIEW AS
-SELECT m.id AS MODULE_ID,
+SELECT m.id                                          AS MODULE_ID,
        m.title,
        m.description,
        m.title_img,
        m."order",
        m.course_id,
-       users_modules.id,
-       users_modules.user_id,
-       users_modules.status
+       COALESCE(users_modules.user_id, -99)          AS user_id,
+       COALESCE(users_modules.status, 'not_started') AS status
 FROM users_modules
-       INNER JOIN modules m on users_modules.module_id = m.id;
+       RIGHT JOIN modules m on users_modules.module_id = m.id;
 
 CREATE OR REPLACE VIEW USER_LESSON_VIEW AS
-SELECT l.id AS LESSON_ID,
+SELECT l.id                                          AS LESSON_ID,
        l.title,
        l."order",
        l.module_id,
-       users_lessons.id,
-       users_lessons.user_id,
-       users_lessons.status
+       COALESCE(users_lessons.id, -99)               AS id,
+       COALESCE(users_lessons.user_id, -99)          AS user_id,
+       COALESCE(users_lessons.status, 'not_started') AS status
 FROM users_lessons
-       INNER JOIN lessons l on users_lessons.lesson_id = l.id;
+       RIGHT JOIN lessons l on users_lessons.lesson_id = l.id;
 
 CREATE OR REPLACE VIEW USER_LESSON_ITEM_VIEW AS
-SELECT li.id AS LESSON_ITEM_ID,
+SELECT li.id                                              AS LESSON_ITEM_ID,
        li.name,
        li."order",
        li.content,
        li.title_img,
        li.lesson_id,
-       users_lesson_items.id,
-       users_lesson_items.user_id,
-       users_lesson_items.status
+       COALESCE(users_lesson_items.id, -99)               AS id,
+       COALESCE(users_lesson_items.user_id, -99)          AS user_id,
+       COALESCE(users_lesson_items.status, 'not_started') AS status
 FROM users_lesson_items
-       INNER JOIN lessons_items li on users_lesson_items.lesson_item_id = li.id;
+       RIGHT JOIN lessons_items li on users_lesson_items.lesson_item_id = li.id;

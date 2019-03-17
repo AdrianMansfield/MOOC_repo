@@ -24,14 +24,13 @@ fetch('http://localhost:8095/static-info/module-info/' + moduleIdParam)
 function drawLessonAndLessonItemList(jsonData) {
     let moduleTitle = document.createElement('h1');
     moduleTitle.innerText = jsonData.title;
-    moduleTitle.setAttribute('class', 'text-light');
     let moduleTitleContainer = document.getElementById('module-title');
     moduleTitleContainer.appendChild(moduleTitle);
 
     console.log(jsonData);
     let lessonContainer = document.getElementById('lessonContainer');
     let lessonsList = document.createElement('div');
-    lessonsList.setAttribute('class', 'list-group  text-light');
+    lessonsList.setAttribute('class', 'list-group');
     lessonContainer.appendChild(lessonsList);
 
     jsonData.lessonForViewDtos.forEach(function (lesson) {
@@ -52,7 +51,7 @@ function drawLessonAndLessonItemList(jsonData) {
         }
         lessonListItem.appendChild(lessonStatus);
         let lessonItemList = document.createElement('div');
-        lessonItemList.setAttribute('class', 'list-group text-light');
+        lessonItemList.setAttribute('class', 'list-group');
         lessonListItem.appendChild(lessonItemList);
 
         lesson.lessonItemForViewDtos.forEach(function (lessonItem) {
@@ -96,7 +95,6 @@ function drawlessonItemContent(jsonData) {
     lessonItemImg.setAttribute('src', jsonData.title_img_link);
     container.appendChild(lessonItemImg);
     let lessonItemTextContent = document.createElement('p');
-    lessonItemTextContent.setAttribute('class', 'text-light');
     lessonItemTextContent.innerText = jsonData.content;
     container.appendChild(lessonItemTextContent);
     lessonItemContent.appendChild(container);

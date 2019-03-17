@@ -29,7 +29,7 @@ public class LessonForViewDtoRepository implements ILessonForViewDto {
                 "ulv.user_id as userId," +
                 "ulv.status as status " +
                 "from user_lesson_view ulv " +
-                "where ulv.user_id=:userId and ulv.module_id=:moduleId")
+                "where (ulv.user_id=:userId or ulv.user_id = -99) and ulv.module_id=:moduleId order by \"order\"")
                 .setParameter("userId", userId)
                 .setParameter("moduleId", moduleId)
                 .unwrap(NativeQuery.class)

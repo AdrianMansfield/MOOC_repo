@@ -48,7 +48,7 @@ function drawCurrentCourseModule(jsonData) {
         moduleImg.setAttribute('src', '/picture/logo-img.jpg');
         card.appendChild(moduleImg);
         let cardBody = document.createElement('div');
-        cardBody.setAttribute('class', 'card-body text-light');
+        cardBody.setAttribute('class', 'card-body');
         card.appendChild(cardBody);
         let cardTitle = document.createElement('h5');
         cardTitle.setAttribute('class', 'card-title d-inline');

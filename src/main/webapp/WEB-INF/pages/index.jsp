@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
 
 </head>
-<body class="bg-secondary">
+<body class="bg-color">
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
@@ -40,7 +40,7 @@
 </div>
 
 <nav class="navbar navbar-dark bg-dark text-center">
-    <p class="text-light w-100 m-auto">course list</p>
+    <p class="w-100 m-auto">course list</p>
 </nav>
 <div class="container mt-3 mb-3">
     <div class="card-deck"></div>

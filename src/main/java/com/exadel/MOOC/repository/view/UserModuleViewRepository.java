@@ -6,10 +6,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
@@ -60,10 +57,15 @@ public class UserModuleViewRepository implements IUserModuleViewRepository {
         Root<UserModule> userModuleRoot = criteriaQuery.from(UserModule.class);
         ParameterExpression<Long> userIdParam = criteriaBuilder.parameter(Long.class);
         ParameterExpression<Long> courseIdParam = criteriaBuilder.parameter(Long.class);
+        Predicate predicate = criteriaBuilder.disjunction();
+        predicate.getExpressions()
+                .add(criteriaBuilder.equal(userModuleRoot.get(USER_ID), userIdParam));
+        predicate.getExpressions()
+                .add(criteriaBuilder.equal(userModuleRoot.get(USER_ID), -99L));
         criteriaQuery
                 .select(userModuleRoot)
-                .where(criteriaBuilder.equal(userModuleRoot.get(USER_ID), userIdParam),
-                        criteriaBuilder.equal(userModuleRoot.get(COURSE_ID), courseIdParam));
+                .where(criteriaBuilder.equal(userModuleRoot.get(COURSE_ID), courseIdParam), predicate)
+                .orderBy(criteriaBuilder.asc(userModuleRoot.get("order")));
         TypedQuery<UserModule> userModuleTypedQuery = entityManager.createQuery(criteriaQuery);
         userModuleTypedQuery.setParameter(userIdParam, userId);
         userModuleTypedQuery.setParameter(courseIdParam, courseId);

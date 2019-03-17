@@ -41,10 +41,10 @@ function drawThreeLastCourse(jsonData) {
         let card = document.createElement('div');
         card.setAttribute('class', 'card bg-dark');
         let cardHeader = document.createElement('div');
-        cardHeader.setAttribute('class', 'card-header text-light font-weight-bold text-center');
+        cardHeader.setAttribute('class', 'card-header font-weight-bold text-center');
         cardHeader.innerHTML = course.title;
         let cardBody = document.createElement('div');
-        cardBody.setAttribute('class', 'card-body text-light text-center');
+        cardBody.setAttribute('class', 'card-body text-center');
         let cardAuthor = document.createElement('p');
         cardAuthor.setAttribute('class', 'card-text');
         cardAuthor.innerHTML = course.creator.userName;

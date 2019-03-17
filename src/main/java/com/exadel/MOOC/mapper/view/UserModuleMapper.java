@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserModuleMapper {
 
+    //TODO add interface call
     @Autowired
     private UserModuleViewRepository userModuleViewRepository;
 
@@ -16,7 +17,7 @@ public class UserModuleMapper {
         return UserModuleDTO.builder()
                 .courseId(userModule.getCourseId())
                 .description(userModule.getDescription())
-                .id(userModule.getId())
+                .id(userModule.getModuleId())
                 .order(userModule.getOrder())
                 .status(userModule.getStatus())
                 .title(userModule.getTitle())

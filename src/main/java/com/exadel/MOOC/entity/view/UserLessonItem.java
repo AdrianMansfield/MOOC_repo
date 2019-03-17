@@ -1,6 +1,5 @@
 package com.exadel.MOOC.entity.view;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,9 +14,8 @@ import javax.persistence.Table;
 @Getter
 public class UserLessonItem {
 
-    @Id
-    private Long id;
 
+    @Id
     @Column(name = "lesson_item_id")
     private Long lessonItemId;
 

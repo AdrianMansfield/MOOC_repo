@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.ResultTransformer;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +26,10 @@ public class ModuleForViewDtoRepository implements IModuleForViewDto {
     @Override
     public Optional<ModuleForViewDto> findModuleForViewDtoByUserIdAndModuleId(Long userId, Long moduleId) {
         Criteria criteria = entityManager.unwrap(Session.class).createCriteria(UserModule.class);
-        criteria.add(Expression.eq("userId", userId));
-        criteria.add(Expression.eq("moduleId", moduleId))
+        criteria.add(Expression.eq("moduleId", moduleId));
+        criteria.add(Restrictions.disjunction()
+                .add(Restrictions.eq("userId", userId))
+                .add(Restrictions.eq("userId", -99L)))
                 .setProjection(
                         Projections.projectionList()
                                 .add(Projections.property("moduleId"))
