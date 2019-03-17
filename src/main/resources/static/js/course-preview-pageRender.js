@@ -42,7 +42,7 @@ function drawCurrentCourseModule(jsonData) {
     console.log(jsonData);
     jsonData.forEach(function (module) {
         let card = document.createElement('div');
-        card.setAttribute('class', 'card bg-dark');
+        card.setAttribute('class', 'card');
         let moduleImg = document.createElement('img');
         moduleImg.setAttribute('class', 'card-img-top');
         moduleImg.setAttribute('src', '/picture/logo-img.jpg');

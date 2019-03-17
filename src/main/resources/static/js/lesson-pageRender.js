@@ -35,18 +35,18 @@ function drawLessonAndLessonItemList(jsonData) {
 
     jsonData.lessonForViewDtos.forEach(function (lesson) {
         let lessonListItem = document.createElement('div');
-        lessonListItem.setAttribute('class', 'list-group-item');
+        lessonListItem.setAttribute('class', 'list-group-item font-weight-bold');
         lessonListItem.innerText = lesson.title;
         lessonsList.appendChild(lessonListItem);
         let lessonStatus = document.createElement('span');
         if (lesson.status === 'finished') {
-            lessonStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
+            lessonStatus.setAttribute('class', 'badge badge-success badge-pill  ml-2');
             lessonStatus.innerText = 'finished';
         } else if (lesson.status === "not_started") {
-            lessonStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
+            lessonStatus.setAttribute('class', 'badge badge-danger badge-pill  ml-2');
             lessonStatus.innerText = 'not started';
         } else {
-            lessonStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
+            lessonStatus.setAttribute('class', 'badge badge-primary badge-pill  ml-2');
             lessonStatus.innerText = "in process";
         }
         lessonListItem.appendChild(lessonStatus);
@@ -65,10 +65,10 @@ function drawLessonAndLessonItemList(jsonData) {
             lessonItemList.appendChild(lessonItemListItem);
             let lessonItemStatus = document.createElement('span');
             if (lessonItem.status === 'finished') {
-                lessonItemStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
+                lessonItemStatus.setAttribute('class', 'badge badge-success badge-pill ml-2');
                 lessonItemStatus.innerText = 'finished';
             } else {
-                lessonItemStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
+                lessonItemStatus.setAttribute('class', 'badge badge-danger badge-pill ml-2');
                 lessonItemStatus.innerText = 'not started';
             }
             lessonItemListItem.appendChild(lessonItemStatus);

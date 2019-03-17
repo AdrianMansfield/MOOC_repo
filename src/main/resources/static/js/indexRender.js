@@ -39,7 +39,7 @@ function drawThreeLastCourse(jsonData) {
     let cardDeck = document.getElementsByClassName('card-deck');
     jsonData.forEach(function (course) {
         let card = document.createElement('div');
-        card.setAttribute('class', 'card bg-dark');
+        card.setAttribute('class', 'card');
         let cardHeader = document.createElement('div');
         cardHeader.setAttribute('class', 'card-header font-weight-bold text-center');
         cardHeader.innerHTML = course.title;

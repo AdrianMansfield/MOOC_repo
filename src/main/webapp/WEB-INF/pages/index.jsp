@@ -32,15 +32,12 @@
 </nav>
 
 <div class="img-container">
-    <sec:authorize access="isAuthenticated()" var="isAuthorizeAny">
-
-    </sec:authorize>
     <img src="/picture/logo-img.jpg" class="img-fluid" alt="logo-img">
     <div class="centered">Another MOOC platform for education.</div>
 </div>
 
 <nav class="navbar navbar-dark bg-dark text-center">
-    <p class="w-100 m-auto">course list</p>
+    <p class="w-100 m-auto text-light">course list</p>
 </nav>
 <div class="container mt-3 mb-3">
     <div class="card-deck"></div>
