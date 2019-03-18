@@ -77,17 +77,19 @@ function drawLessonAndLessonItemList(jsonData) {
 }
 
 function getLessonItemInfo(button) {
-    fetch('http://localhost:8095/lesson-item/find/' + button.getAttribute('lessonItemId'))
+    let lessonItemId = button.getAttribute('lessonItemId');
+    fetch('http://localhost:8095/lesson-item/find/' + lessonItemId)
         .then(status)
         .then(json)
         .then(function (data) {
-            drawlessonItemContent(data);
+            drawlessonItemContent(data, lessonItemId);
         }).catch(function (error) {
         console.log('Request failed', error);
     });
 }
 
-function drawlessonItemContent(jsonData) {
+function drawlessonItemContent(jsonData, lessonItemId) {
+    console.log(lessonItemId);
     let lessonItemContent = document.getElementById('lessonItemContent');
     lessonItemContent.removeChild(lessonItemContent.lastChild);
     let container = document.createElement('div');
@@ -98,4 +100,31 @@ function drawlessonItemContent(jsonData) {
     lessonItemTextContent.innerText = jsonData.content;
     container.appendChild(lessonItemTextContent);
     lessonItemContent.appendChild(container);
+    let nextLessonItemButton = document.createElement('button');
+    nextLessonItemButton.setAttribute('class', 'btn btn-success go-next-button');
+    nextLessonItemButton.setAttribute('lessonItemId', lessonItemId);
+    nextLessonItemButton.innerText = 'go to next';
+    nextLessonItemButton.onclick = function () {
+        setStatusForLessonItem(this);
+    };
+    container.appendChild(nextLessonItemButton);
+}
+
+function setStatusForLessonItem(button) {
+    let lessonItemId = button.getAttribute('lessonItemId');
+    fetch('http://localhost:8095/user-to-lesson-item/setLessonItemStatus', {
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: lessonItemId
+    })
+        .then(json)
+        .then(function (data) {
+            console.log('Request succeeded with JSON response', data);
+            changeDataOnPage();
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
 }

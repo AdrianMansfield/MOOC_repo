@@ -92,3 +92,8 @@ nav p {
 form{
     display: inline;
 }
+
+.go-next-button{
+    position: absolute;
+    bottom: 0;
+}
