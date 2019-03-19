@@ -32,31 +32,30 @@
                     <img src='/picture/user-img.jpg' alt="test" class="rounded-circle user-img"/>
                 </tr>
                 <tr>
-
                     <td>
                         <p class="user-data-caption">user name</p>
-                        MarkOtto
+                        <p id="userName"></p>
                     </td>
                 </tr>
                 <tr>
 
                     <td>
                         <p class="user-data-caption">first name</p>
-                        Mark
+                        <p id="firstName"></p>
                     </td>
                 </tr>
                 <tr>
 
                     <td>
                         <p class="user-data-caption">last name</p>
-                        Otto
+                        <p id="lastName"></p>
                     </td>
                 </tr>
                 <tr>
 
                     <td>
                         <p class="user-data-caption">email</p>
-                        MOtto@mail.com
+                        <p id="email"></p>
                     </td>
                 </tr>
             </table>
@@ -73,19 +72,8 @@
                     <th scope="col">status</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>Go programming</td>
-                    <td>in progress</td>
-                </tr>
-                <tr>
-                    <td>Java 8 course</td>
-                    <td>finished</td>
-                </tr>
-                <tr>
-                    <td>Spring boot starter course</td>
-                    <td>in progress</td>
-                </tr>
+                <tbody id="userCourses">
+
                 </tbody>
             </table>
         </div>
@@ -102,6 +90,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src=""></script>
+<script src="/js/profile-pageRender.js"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 package com.exadel.MOOC.service;
 
-import com.exadel.MOOC.repository.IUserRepository;
 import com.exadel.MOOC.dto.UserForEditDTO;
 import com.exadel.MOOC.dto.UserForViewDTO;
 import com.exadel.MOOC.entity.User;
 import com.exadel.MOOC.mapper.UserMapper;
+import com.exadel.MOOC.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,4 +48,14 @@ public class UserService implements IUserService {
             return Optional.of(userMapper.toDTO(userOptional.get()));
         } else throw new RuntimeException("not found user with name " + userName);
     }
+
+    @Override
+    public Optional<UserForViewDTO> findById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            return Optional.of(userMapper.toDTO(userOptional.get()));
+        } else throw new RuntimeException("not found user with id " + id);
+    }
+
+
 }

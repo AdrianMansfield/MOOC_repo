@@ -17,4 +17,6 @@ public interface IUserService {
     List<UserForViewDTO> findAll();
 
     Optional<UserForViewDTO> findByUserName(String userName);
+
+    Optional<UserForViewDTO> findById(Long id);
 }
