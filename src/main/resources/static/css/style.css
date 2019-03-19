@@ -74,13 +74,12 @@ nav p {
 }
 
 .user-data {
-    color: white;
     font-family: 'Roboto Slab', sans-serif;
     font-size: 150%;
 }
 
 .user-data-caption {
-    color: lavender;
+    font-weight: bold;
     font-size: 75%;
 }
 

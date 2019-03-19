@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>user profile page</title>
+    <title><sec:authentication property="principal.username"/></title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,11 +25,11 @@
     </div>
 </nav>
 <div class="container user-info">
-    <div class="row text-light">
+    <div class="row">
         <div class="col-sm-4">
             <table class="table table-borderless text-center user-data">
                 <tr>
-                    <img src="../resources/pictures/user-img.jpg" alt="test" class="rounded-circle user-img">
+                    <img src='/picture/user-img.jpg' alt="test" class="rounded-circle user-img"/>
                 </tr>
                 <tr>
 
@@ -66,7 +66,7 @@
                 <h1 class="align-center">user courses</h1>
             </div>
 
-            <table class="table table-striped table-dark">
+            <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">course</th>
@@ -102,6 +102,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="/js/indexRender.js"></script>
+<script src=""></script>
 </body>
 </html>

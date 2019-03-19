@@ -19,7 +19,7 @@
         <a class="navbar-brand mb-0 h1" href="/">MOOC-project</a>
         <div class="text-right">
             <sec:authorize access="isAuthenticated()">
-                <span class="text-light"><sec:authentication property="principal.username"/></span>
+                <a class="text-light" href="/profile"><sec:authentication property="principal.username"/></a>
                 <a class="btn btn-outline-light btn-sm text-light" href="/logout">Log out</a>
             </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
