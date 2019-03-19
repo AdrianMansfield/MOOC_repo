@@ -27,13 +27,10 @@ function drawLessonAndLessonItemList(jsonData) {
     moduleTitle.innerText = jsonData.title;
     let moduleTitleContainer = document.getElementById('module-title');
     moduleTitleContainer.appendChild(moduleTitle);
-
-    // console.log(jsonData);
     let lessonContainer = document.getElementById('lessonContainer');
     let lessonsList = document.createElement('div');
     lessonsList.setAttribute('class', 'list-group');
     lessonContainer.appendChild(lessonsList);
-
     jsonData.lessonForViewDtos.forEach(function (lesson) {
         let lessonListItem = document.createElement('div');
         lessonListItem.setAttribute('class', 'list-group-item font-weight-bold');
@@ -41,14 +38,12 @@ function drawLessonAndLessonItemList(jsonData) {
         lessonsList.appendChild(lessonListItem);
 
         if (lesson.status === 'finished') {
-            let lessonStatus = document.createElement('span');
-            lessonStatus.setAttribute('class', 'badge badge-success badge-pill  ml-2');
-            lessonStatus.innerText = 'finished';
+            let lessonStatus = document.createElement('i');
+            lessonStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
             lessonListItem.appendChild(lessonStatus);
         } else if (lesson.status === "in_progress") {
-            let lessonStatus = document.createElement('span');
-            lessonStatus.setAttribute('class', 'badge badge-primary badge-pill  ml-2');
-            lessonStatus.innerText = "in process";
+            let lessonStatus = document.createElement('i');
+            lessonStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
             lessonListItem.appendChild(lessonStatus);
         }
 
@@ -68,9 +63,8 @@ function drawLessonAndLessonItemList(jsonData) {
             lessonItemList.appendChild(lessonItemListItem);
 
             if (lessonItem.status === 'finished') {
-                let lessonItemStatus = document.createElement('span');
-                lessonItemStatus.setAttribute('class', 'badge badge-success badge-pill ml-2');
-                lessonItemStatus.innerText = 'finished';
+                let lessonItemStatus = document.createElement('i');
+                lessonItemStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
                 lessonItemListItem.appendChild(lessonItemStatus);
             }
 
@@ -119,7 +113,6 @@ function drawLessonItemContent(jsonData, lessonItemId) {
             setStatusForLessonItem(this);
         };
     } else {
-        console.log('not setting status for items');
         nextLessonItemButton.onclick = function () {
             changeLessonItemStatusOnUI(this)
         };
@@ -139,11 +132,9 @@ function setStatusForLessonItem(button) {
     })
         .then(status)
         .then(function () {
-            console.log('Request succeeded with JSON response');
             changeLessonItemStatusOnUI(button);
         })
         .catch(function (error) {
-            console.log('Request failed', error);
         });
 }
 
@@ -181,9 +172,7 @@ function index(el) {
 function isFinished(button) {
     let leftMenuButtonParent = document.getElementById(button.id + '-leftMenu').parentNode;
     let numberOfLessonItemsInLesson = leftMenuButtonParent.childElementCount;
-    let numbersOfStatusesInLesson = leftMenuButtonParent.querySelectorAll("span.badge").length;
-    console.log(numbersOfStatusesInLesson);
-    console.log(numberOfLessonItemsInLesson);
+    let numbersOfStatusesInLesson = leftMenuButtonParent.querySelectorAll("i.fas").length;
     return numberOfLessonItemsInLesson === numbersOfStatusesInLesson;
 }
 
@@ -221,25 +210,22 @@ function isLessonFinished(button) {
 
 function setStatusForLessonItemsOnUI(button) {
     let currentLessonItemLinkFromLeftBar = document.getElementById(button.id + '-leftMenu');
-    let status = document.createElement('span');
-    status.classList.add('badge', 'badge-success', 'badge-pill', 'ml-2');
-    status.innerText = 'finished';
+    let status = document.createElement('i');
+    status.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
     currentLessonItemLinkFromLeftBar.appendChild(status);
 }
 
 function setStatusFinishedForLesson(button) {
     let lessonForCurrentLessonItem = document.getElementById(button.id + '-leftMenu').parentNode.parentNode;
-    let status = document.createElement('span');
-    status.classList.add('badge', 'badge-success', 'badge-pill', 'ml-2');
-    status.innerText = 'finished';
-    let oldLessonStatus = lessonForCurrentLessonItem.getElementsByTagName('span');
+    let status = document.createElement('i');
+    status.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
+    let oldLessonStatus = lessonForCurrentLessonItem.getElementsByTagName('i');
     lessonForCurrentLessonItem.replaceChild(status, oldLessonStatus[0]);
 }
 
 function setStatusInProcessForLesson(button) {
     let lessonForCurrentLessonItem = document.getElementById(button.id + '-leftMenu').parentNode.parentNode;
-    let status = document.createElement('span');
-    status.classList.add('badge', 'badge-primary', 'badge-pill', 'ml-2');
-    status.innerText = 'in process';
+    let status = document.createElement('i');
+    status.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
     lessonForCurrentLessonItem.insertBefore(status, lessonForCurrentLessonItem.children[0]);
 }

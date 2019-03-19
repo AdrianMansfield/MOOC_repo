@@ -33,24 +33,20 @@ function drawCourseTitleAndAuthor(jsonData) {
     courseHeader.innerText = jsonData.title;
     let courseAuthor = document.getElementById("course-author");
     courseAuthor.innerText = jsonData.creator.userName;
-    let courseStatus = document.createElement('span');
-    courseStatus.setAttribute('id', 'courseStatusBadgee');
+    let courseStatus = document.createElement('i');
+    courseStatus.setAttribute('id', 'courseStatusIcon');
     if (jsonData.status === 'finished') {
-        courseStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
-        courseStatus.innerText = 'finished';
+        courseStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
     } else if (jsonData.status === "not_started") {
-        courseStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
-        courseStatus.innerText = 'not started';
+        courseStatus.classList.add('fas', 'fa-circle', 'not-started', 'ml-1');
     } else {
-        courseStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
-        courseStatus.innerText = "in process";
+        courseStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
     }
     courseHeader.appendChild(courseStatus);
 }
 
 function drawCurrentCourseModule(jsonData) {
     let cardDeck = document.getElementsByClassName('card-columns');
-    console.log(jsonData);
     jsonData.forEach(function (module) {
         let card = document.createElement('div');
         card.setAttribute('class', 'card');
@@ -65,16 +61,13 @@ function drawCurrentCourseModule(jsonData) {
         cardTitle.setAttribute('class', 'card-title d-inline');
         cardTitle.innerText = module.title;
         cardBody.appendChild(cardTitle);
-        let moduleStatus = document.createElement('span');
+        let moduleStatus = document.createElement('i');
         if (module.status === 'finished') {
-            moduleStatus.setAttribute('class', 'badge badge-success badge-pill d-inline');
-            moduleStatus.innerText = 'finished';
+            moduleStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
         } else if (module.status === "not_started") {
-            moduleStatus.setAttribute('class', 'badge badge-danger badge-pill d-inline');
-            moduleStatus.innerText = 'not started';
+            moduleStatus.classList.add('fas', 'fa-circle', 'not-started', 'ml-1');
         } else {
-            moduleStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
-            moduleStatus.innerText = "in process";
+            moduleStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
         }
         cardBody.appendChild(moduleStatus);
         let cardText = document.createElement('p');
@@ -101,7 +94,6 @@ function subscribeToCourse() {
     })
         .then(json)
         .then(function (data) {
-            console.log('Request succeeded with JSON response', data);
             changeDataOnPage();
         })
         .catch(function (error) {
@@ -122,7 +114,6 @@ function renderSubscribeButton() {
 function changeDataOnPage() {
     let subButtonContainer = document.getElementById('courseActionButton');
     subButtonContainer.removeChild(subButtonContainer.firstChild);
-    let courseStatus = document.getElementById('courseStatusBadgee');
-    courseStatus.setAttribute('class', 'badge badge-primary badge-pill d-inline');
-    courseStatus.innerText = "in process";
+    let courseStatus = document.getElementById('courseStatusIcon');
+    courseStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
 }

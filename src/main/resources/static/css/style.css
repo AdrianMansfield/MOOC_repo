@@ -15,7 +15,7 @@
     color: white;
 }
 
-.bg-color{
+.bg-color {
     background-color: #eeeef0;
 }
 
@@ -79,21 +79,36 @@ nav p {
     font-size: 150%;
 }
 
-.user-data-caption{
+.user-data-caption {
     color: lavender;
     font-size: 75%;
 }
 
 
-.text-center{
+.text-center {
     font-family: "Roboto Slab", sans-serif;
 }
 
-form{
+form {
     display: inline;
 }
 
-.go-next-button{
+.go-next-button {
     position: absolute;
     bottom: 0;
+}
+
+.finished {
+    color: green;
+    font-size: .5rem;
+}
+
+.in-progress {
+    color: yellow;
+    font-size: .5rem;
+}
+
+.not-started {
+    color: red;
+    font-size: .5rem;
 }
