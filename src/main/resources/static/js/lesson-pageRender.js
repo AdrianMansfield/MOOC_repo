@@ -79,8 +79,10 @@ function drawLessonAndLessonItemList(jsonData) {
 }
 
 function markAsActive(button) {
-    let prevActiveLessonItem = document.getElementsByClassName('active')[0];
-    prevActiveLessonItem.classList.remove('active');
+    if (document.querySelectorAll('button.active').length > 0) {
+        let prevActiveLessonItem = document.getElementsByClassName('active')[0];
+        prevActiveLessonItem.classList.remove('active');
+    }
     let currentLessonItem = document.getElementById(button.id.split('-')[0] + '-leftMenu');
     currentLessonItem.classList.add('active');
 }
