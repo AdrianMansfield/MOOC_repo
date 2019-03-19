@@ -25,6 +25,11 @@ public class UserToLessonItemService implements IUserToLessonItemService {
     @Transactional
     @Override
     public void setStatusFinishedByUserIdAndLessonItemId(Long lessonItemId, Long userId) {
-        lessonItemRepository.setStatusFinishedByUserIdAndLessonItemId(lessonItemId, userId);
+        if (!lessonItemRepository.findByUserIdAndLessonItemId(userId, lessonItemId).isPresent()) {
+            lessonItemRepository.setStatusFinishedByUserIdAndLessonItemId(lessonItemId, userId);
+        } else {
+            //типо логирование ошибки)
+            System.out.println("skip adding entity with userID=" + userId + " and lessonItemID=" + lessonItemId);
+        }
     }
 }

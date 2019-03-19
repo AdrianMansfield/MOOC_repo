@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface IUserToLessonItemRepository extends JpaRepository<UserToLessonItem, Long> {
 
@@ -34,4 +36,6 @@ public interface IUserToLessonItemRepository extends JpaRepository<UserToLessonI
             "values (:userId, :lessonItemId, 'finished')", nativeQuery = true)
     void setStatusFinishedByUserIdAndLessonItemId(@Param("lessonItemId") Long lessonItemId,
                                                   @Param("userId") Long userId);
+
+    Optional<UserToLessonItem> findByUserIdAndLessonItemId(Long userId, Long lessonItemId);
 }
