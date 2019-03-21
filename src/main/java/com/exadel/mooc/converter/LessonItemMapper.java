@@ -1,4 +1,4 @@
-package com.exadel.mooc.mapper;
+package com.exadel.mooc.converter;
 
 import com.exadel.mooc.repository.ILessonRepository;
 import com.exadel.mooc.dto.LessonItemDTO;
@@ -29,7 +29,7 @@ public class LessonItemMapper {
                 .content(lessonItemDTO.getContent())
                 .title_img_link(lessonItemDTO.getTitle_img_link())
                 .lesson(lessonRepository.findById(lessonItemDTO.getLessonId())
-                        .orElseThrow(() -> new RuntimeException("lesson item mapper error")))
+                        .orElseThrow(() -> new RuntimeException("lesson item converter error")))
                 .build();
     }
 }

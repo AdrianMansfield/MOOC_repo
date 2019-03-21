@@ -1,4 +1,4 @@
-package com.exadel.mooc.mapper;
+package com.exadel.mooc.converter;
 
 import com.exadel.mooc.repository.ICourseRepository;
 import com.exadel.mooc.dto.ModuleDTO;
@@ -30,7 +30,7 @@ public class ModuleMapper {
                 .title_img_link(moduleDTO.getTitle_img_link())
                 .order(moduleDTO.getOrder())
                 .course(courseRepository.findById(moduleDTO.getCourseId())
-                        .orElseThrow(() -> new RuntimeException("module mapper error")))
+                        .orElseThrow(() -> new RuntimeException("module converter error")))
                 .build();
     }
 }

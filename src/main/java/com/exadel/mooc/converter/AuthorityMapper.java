@@ -1,4 +1,4 @@
-package com.exadel.mooc.mapper;
+package com.exadel.mooc.converter;
 
 import com.exadel.mooc.dto.AuthorityDTO;
 import com.exadel.mooc.entity.Role;

@@ -1,4 +1,4 @@
-package com.exadel.mooc.mapper;
+package com.exadel.mooc.converter;
 
 import com.exadel.mooc.dto.UserForEditDTO;
 import com.exadel.mooc.dto.UserForViewDTO;

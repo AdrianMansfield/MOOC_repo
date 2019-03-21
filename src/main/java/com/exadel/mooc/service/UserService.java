@@ -3,7 +3,7 @@ package com.exadel.mooc.service;
 import com.exadel.mooc.dto.UserForEditDTO;
 import com.exadel.mooc.dto.UserForViewDTO;
 import com.exadel.mooc.entity.User;
-import com.exadel.mooc.mapper.UserMapper;
+import com.exadel.mooc.converter.UserMapper;
 import com.exadel.mooc.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

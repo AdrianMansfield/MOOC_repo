@@ -1,4 +1,4 @@
-package com.exadel.mooc.mapper.view;
+package com.exadel.mooc.converter.view;
 
 import com.exadel.mooc.dto.view.UserCourseDTO;
 import com.exadel.mooc.entity.view.UserCourse;

@@ -2,7 +2,7 @@ package com.exadel.mooc.service;
 
 import com.exadel.mooc.repository.ILessonRepository;
 import com.exadel.mooc.dto.LessonDTO;
-import com.exadel.mooc.mapper.LessonMapper;
+import com.exadel.mooc.converter.LessonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

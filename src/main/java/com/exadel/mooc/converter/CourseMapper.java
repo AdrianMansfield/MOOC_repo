@@ -1,4 +1,4 @@
-package com.exadel.mooc.mapper;
+package com.exadel.mooc.converter;
 
 import com.exadel.mooc.repository.IUserRepository;
 import com.exadel.mooc.dto.CourseDTO;
@@ -17,7 +17,7 @@ public class CourseMapper {
         return Course.builder()
                 .title(courseDTO.getTitle())
                 .creator(userRepository.findByUserName(courseDTO.getCreator().getUserName())
-                        .orElseThrow(() -> new RuntimeException("course mapper error")))
+                        .orElseThrow(() -> new RuntimeException("course converter error")))
                 .build();
     }
 
