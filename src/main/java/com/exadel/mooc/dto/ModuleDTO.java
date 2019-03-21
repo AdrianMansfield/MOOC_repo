@@ -13,7 +13,7 @@ public class ModuleDTO implements Serializable {
     private Long id;
     private String title;
     private String description;
-    private String title_img_link;
+    private String titleImgLink;
     private int order;
     private Long courseId;
 }

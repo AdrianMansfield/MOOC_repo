@@ -25,7 +25,7 @@ public class LessonsItem extends AbstractEntity {
     private String content;
 
     @Column(name = "title_img")
-    private String title_img_link;
+    private String titleImgLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)

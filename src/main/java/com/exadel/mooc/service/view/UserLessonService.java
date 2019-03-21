@@ -2,7 +2,7 @@ package com.exadel.mooc.service.view;
 
 import com.exadel.mooc.repository.view.UserLessonViewRepository;
 import com.exadel.mooc.dto.view.UserLessonDTO;
-import com.exadel.mooc.converter.view.UserLessonMapper;
+import com.exadel.mooc.converter.view.UserLessonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class UserLessonService implements IUserLessonService {
     private UserLessonViewRepository userLessonViewRepository;
 
     @Autowired
-    private UserLessonMapper mapper;
+    private UserLessonConverter mapper;
 
 
     @Override

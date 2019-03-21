@@ -45,10 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/course/three-latest","/index","/"
-                        ,"/resources/static/**","/module/*","/course-page"
-                        ,"/course/*","/picture/*","/css/*","/js/*","/security/isAnonymous"
-                ,"/lesson-lesson-item","/course-preview-page","/user-to-module/modules-by-course").permitAll()
+                .antMatchers("/course/three-latest", "/index", "/"
+                        , "/resources/static/**", "/module/*", "/course-page"
+                        , "/course/*", "/picture/*", "/css/*", "/js/*", "/security/isAnonymous"
+                        , "/lesson-lesson-item", "/course-preview-page", "/user-to-module/modules-by-course").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

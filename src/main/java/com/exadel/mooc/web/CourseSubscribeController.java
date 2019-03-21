@@ -22,7 +22,7 @@ public class CourseSubscribeController {
     }
 
 
-    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
+    @PostMapping(value = "/subscribe")
     boolean subscribeToCourse(@RequestBody Long courseId) {
         return courseSubscriptionService.subscribe(getUserId(), courseId);
     }

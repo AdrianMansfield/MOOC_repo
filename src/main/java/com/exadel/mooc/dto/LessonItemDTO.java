@@ -13,6 +13,6 @@ public class LessonItemDTO implements Serializable {
     private String name;
     private int order;
     private String content;
-    private String title_img_link;
+    private String titleImgLink;
     private Long lessonId;
 }

@@ -1,11 +1,10 @@
 package com.exadel.mooc.web;
 
-import com.exadel.mooc.dto.staticInfo.CourseForViewDto;
-import com.exadel.mooc.dto.staticInfo.ModuleForViewDto;
+import com.exadel.mooc.dto.staticinfo.CourseForViewDTO;
+import com.exadel.mooc.dto.staticinfo.ModuleForViewDTO;
 import com.exadel.mooc.security.CustomUser;
-import com.exadel.mooc.service.view.staticInfo.ICourseForViewService;
-import com.exadel.mooc.service.view.staticInfo.IModuleForViewService;
-import javassist.NotFoundException;
+import com.exadel.mooc.service.view.staticinfo.ICourseForViewService;
+import com.exadel.mooc.service.view.staticinfo.IModuleForViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -23,21 +22,21 @@ public class StaticInfoController {
     @Autowired
     private ICourseForViewService courseForViewService;
 
-    private Long getUserId(){
+    private Long getUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUser customUser = (CustomUser) authentication.getPrincipal();
         return customUser.getUserId();
     }
 
-    @RequestMapping(value = "/module-info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/module-info", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ModuleForViewDto getFullInfoAboutModule(@RequestParam("moduleId") Long moduleId) throws NotFoundException {
+    public ModuleForViewDTO getFullInfoAboutModule(@RequestParam("moduleId") Long moduleId) {
         return moduleForViewService.getModuleInfo(getUserId(), moduleId);
     }
 
-    @RequestMapping(value = "/course-info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/course-info", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CourseForViewDto getFullInfoAboutCourse(@RequestParam("courseId") Long courseId) throws Exception {
-        return courseForViewService.getCourseInfo(getUserId(),courseId);
+    public CourseForViewDTO getFullInfoAboutCourse(@RequestParam("courseId") Long courseId) {
+        return courseForViewService.getCourseInfo(getUserId(), courseId);
     }
 }

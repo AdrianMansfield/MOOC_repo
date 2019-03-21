@@ -1,6 +1,7 @@
 package com.exadel.mooc.service;
 
 import com.exadel.mooc.dto.CourseDTO;
+import com.exadel.mooc.exception.EntityNotFoundException;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface ICourseService {
 
     List<CourseDTO> findTop3ByOrderByIdDesc();
 
-    CourseDTO findById(Long id) throws Exception;
+    CourseDTO findById(Long id);
 }

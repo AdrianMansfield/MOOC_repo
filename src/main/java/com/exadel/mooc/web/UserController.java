@@ -27,28 +27,28 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     List<UserForViewDTO> findAll() {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
     void save(@RequestBody final List<UserForEditDTO> userForEditDTOS) {
         userForEditDTOS.forEach(userService::save);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
     void delete(@RequestBody final Long id) {
         userService.deleteByID(id);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     void update(@RequestBody final List<UserForEditDTO> userForEditDTOS) {
         userForEditDTOS.forEach(userService::update);
     }
 
-    @RequestMapping(value = "/get-user-info", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/get-user-info", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     UserForViewDTO getUserInfo() {
         return userService.findById(getUserId()).orElseThrow(RuntimeException::new);

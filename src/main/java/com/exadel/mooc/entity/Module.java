@@ -22,7 +22,7 @@ public class Module extends AbstractEntity {
     private String description;
 
     @Column(name = "title_img")
-    private String title_img_link;
+    private String titleImgLink;
 
     @Column(name = "order")
     private int order;

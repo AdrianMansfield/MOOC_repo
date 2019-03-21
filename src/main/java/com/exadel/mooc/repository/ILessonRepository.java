@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ILessonRepository extends JpaRepository<Lesson, Long> {
 
-    List<Lesson> findByModule_Id(Long moduleId);
+    List<Lesson> findByModuleId(Long moduleId);
 }

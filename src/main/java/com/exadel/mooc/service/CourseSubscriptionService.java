@@ -1,8 +1,8 @@
 package com.exadel.mooc.service;
 
-import com.exadel.mooc.entity.itemType.ParentEntityStatus;
-import com.exadel.mooc.entity.linkageTable.UserToCourse;
-import com.exadel.mooc.service.linkageTable.IUserToCourseService;
+import com.exadel.mooc.entity.itemtype.ParentEntityStatus;
+import com.exadel.mooc.entity.linkagetable.UserToCourse;
+import com.exadel.mooc.service.linkagetable.IUserToCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class CourseSubscriptionService implements ICourseSubscriptionService {
         if (userToCourseService.countAllByUserIdAndCourseId(userId, courseId) > 0) {
             result = false;
         } else {
-            userToCourseService.save(new UserToCourse(null, userId, courseId, ParentEntityStatus.in_progress));
+            userToCourseService.save(new UserToCourse(null, userId, courseId, ParentEntityStatus.IN_PROGRESS));
         }
         return result;
     }

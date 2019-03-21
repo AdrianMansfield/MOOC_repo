@@ -31,7 +31,7 @@ function drawLessonAndLessonItemList(jsonData) {
     let lessonsList = document.createElement('div');
     lessonsList.setAttribute('class', 'list-group');
     lessonContainer.appendChild(lessonsList);
-    jsonData.lessonForViewDtos.forEach(function (lesson) {
+    jsonData.lessonForViewDTOS.forEach(function (lesson) {
         let lessonListItem = document.createElement('div');
         lessonListItem.setAttribute('class', 'list-group-item font-weight-bold');
         lessonListItem.innerText = lesson.title;
@@ -51,7 +51,7 @@ function drawLessonAndLessonItemList(jsonData) {
         lessonItemList.setAttribute('class', 'list-group');
         lessonListItem.appendChild(lessonItemList);
 
-        lesson.lessonItemForViewDtos.forEach(function (lessonItem) {
+        lesson.lessonItemForViewDTOS.forEach(function (lessonItem) {
             let lessonItemListItem = document.createElement('button');
             lessonItemListItem.setAttribute('class', 'list-group-item list-group-item-action text-dark');
             lessonItemListItem.id = lessonItem.lessonItemId + '-leftMenu';
@@ -98,7 +98,7 @@ function drawLessonItemContent(jsonData, lessonItemId) {
     lessonItemContent.removeChild(lessonItemContent.lastChild);
     let container = document.createElement('div');
     let lessonItemImg = document.createElement('img');
-    lessonItemImg.setAttribute('src', jsonData.title_img_link);
+    lessonItemImg.setAttribute('src', jsonData.titleImgLink);
     container.appendChild(lessonItemImg);
     let lessonItemTextContent = document.createElement('p');
     lessonItemTextContent.innerText = jsonData.content;

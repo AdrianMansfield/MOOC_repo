@@ -1,8 +1,8 @@
 package com.exadel.mooc.service;
 
-import com.exadel.mooc.repository.IModuleRepository;
+import com.exadel.mooc.converter.ModuleConverter;
 import com.exadel.mooc.dto.ModuleDTO;
-import com.exadel.mooc.converter.ModuleMapper;
+import com.exadel.mooc.repository.IModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ModuleService implements IModuleService {
 
     @Autowired
-    private ModuleMapper mapper;
+    private ModuleConverter mapper;
 
     @Autowired
     private IModuleRepository moduleRepository;
@@ -40,6 +40,6 @@ public class ModuleService implements IModuleService {
 
     @Override
     public List<ModuleDTO> findByCourseId(Long courseId) {
-        return moduleRepository.findByCourse_Id(courseId).stream().map(mapper::toDTO).collect(Collectors.toList());
+        return moduleRepository.findByCourseId(courseId).stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 }

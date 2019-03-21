@@ -3,13 +3,13 @@ CREATE DATABASE moocproject;
 CREATE USER moocuser with encrypted password 'root';
 GRANT ALL ON DATABASE moocproject TO moocuser;
 CREATE TYPE child_entity_status AS ENUM (
-  'not_started',
-  'finished'
+  'NOT_STARTED',
+  'FINISHED'
   );
 CREATE TYPE parent_entity_status as ENUM (
-  'not_started',
-  'in_progress',
-  'finished'
+  'NOT_STARTED',
+  'IN_PROGRESS',
+  'FINISHED'
   );
 CREATE TABLE IF NOT EXISTS USERS
 (
@@ -146,7 +146,7 @@ SELECT m.id                                          AS MODULE_ID,
        m."order",
        m.course_id,
        COALESCE(users_modules.user_id, -99)          AS user_id,
-       COALESCE(users_modules.status, 'not_started') AS status
+       COALESCE(users_modules.status, 'NOT_STARTED') AS status
 FROM users_modules
        RIGHT JOIN modules m on users_modules.module_id = m.id;
 
@@ -157,7 +157,7 @@ SELECT l.id                                          AS LESSON_ID,
        l.module_id,
        COALESCE(users_lessons.id, -99)               AS id,
        COALESCE(users_lessons.user_id, -99)          AS user_id,
-       COALESCE(users_lessons.status, 'not_started') AS status
+       COALESCE(users_lessons.status, 'NOT_STARTED') AS status
 FROM users_lessons
        RIGHT JOIN lessons l on users_lessons.lesson_id = l.id;
 
@@ -170,6 +170,6 @@ SELECT li.id                                              AS LESSON_ITEM_ID,
        li.lesson_id,
        COALESCE(users_lesson_items.id, -99)               AS id,
        COALESCE(users_lesson_items.user_id, -99)          AS user_id,
-       COALESCE(users_lesson_items.status, 'not_started') AS status
+       COALESCE(users_lesson_items.status, 'NOT_STARTED') AS status
 FROM users_lesson_items
        RIGHT JOIN lessons_items li on users_lesson_items.lesson_item_id = li.id;

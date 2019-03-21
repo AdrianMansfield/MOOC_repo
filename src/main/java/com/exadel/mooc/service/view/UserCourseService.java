@@ -2,7 +2,7 @@ package com.exadel.mooc.service.view;
 
 import com.exadel.mooc.repository.view.UserCourseViewRepository;
 import com.exadel.mooc.dto.view.UserCourseDTO;
-import com.exadel.mooc.converter.view.UserCourseMapper;
+import com.exadel.mooc.converter.view.UserCourseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class UserCourseService implements IUserCourseService {
 
     @Autowired
-    private UserCourseMapper mapper;
+    private UserCourseConverter mapper;
 
     @Autowired
     private UserCourseViewRepository userCourseViewRepository;

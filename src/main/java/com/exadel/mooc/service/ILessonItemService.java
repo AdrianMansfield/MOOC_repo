@@ -1,7 +1,6 @@
 package com.exadel.mooc.service;
 
 import com.exadel.mooc.dto.LessonItemDTO;
-import javassist.NotFoundException;
 
 import java.util.List;
 
@@ -15,5 +14,5 @@ public interface ILessonItemService {
 
     List<LessonItemDTO> findAll();
 
-    LessonItemDTO findById(Long id) throws NotFoundException;
+    LessonItemDTO findById(Long id);
 }

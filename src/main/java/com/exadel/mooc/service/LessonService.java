@@ -1,8 +1,8 @@
 package com.exadel.mooc.service;
 
-import com.exadel.mooc.repository.ILessonRepository;
+import com.exadel.mooc.converter.LessonConverter;
 import com.exadel.mooc.dto.LessonDTO;
-import com.exadel.mooc.converter.LessonMapper;
+import com.exadel.mooc.repository.ILessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,11 @@ public class LessonService implements ILessonService {
     private ILessonRepository lessonRepository;
 
     @Autowired
-    private LessonMapper lessonMapper;
+    private LessonConverter lessonConverter;
 
     @Override
     public void save(LessonDTO lessonDTO) {
-        lessonRepository.save(lessonMapper.toEntity(lessonDTO));
+        lessonRepository.save(lessonConverter.toEntity(lessonDTO));
     }
 
     @Override
@@ -30,16 +30,16 @@ public class LessonService implements ILessonService {
 
     @Override
     public void update(LessonDTO lessonDTO) {
-        lessonRepository.save(lessonMapper.toEntity(lessonDTO));
+        lessonRepository.save(lessonConverter.toEntity(lessonDTO));
     }
 
     @Override
     public List<LessonDTO> findAll() {
-        return lessonRepository.findAll().stream().map(lessonMapper::toDTO).collect(Collectors.toList());
+        return lessonRepository.findAll().stream().map(lessonConverter::toDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<LessonDTO> findByModuleId(Long moduleId) {
-        return lessonRepository.findByModule_Id(moduleId).stream().map(lessonMapper::toDTO).collect(Collectors.toList());
+        return lessonRepository.findByModuleId(moduleId).stream().map(lessonConverter::toDTO).collect(Collectors.toList());
     }
 }

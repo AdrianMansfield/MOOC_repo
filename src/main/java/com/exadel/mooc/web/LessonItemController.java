@@ -1,10 +1,10 @@
 package com.exadel.mooc.web;
 
 import com.exadel.mooc.dto.LessonItemDTO;
+import com.exadel.mooc.exception.EntityNotFoundException;
 import com.exadel.mooc.security.CustomUser;
 import com.exadel.mooc.service.ILessonItemService;
-import com.exadel.mooc.service.linkageTable.IUserToCourseHierarchyObjectAggregationService;
-import javassist.NotFoundException;
+import com.exadel.mooc.service.linkagetable.IUserToCourseHierarchyObjectAggregationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -30,35 +30,30 @@ public class LessonItemController {
         return customUser.getUserId();
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     void update(@RequestBody final List<LessonItemDTO> lessonItemDTOS) {
         lessonItemDTOS.forEach(lessonItemService::update);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
     void delete(@RequestBody final Long id) {
         lessonItemService.deleteByID(id);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     List<LessonItemDTO> findAll() {
         return lessonItemService.findAll();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
     void save(@RequestBody final List<LessonItemDTO> lessonItemDTOS) {
         lessonItemDTOS.forEach(lessonItemService::save);
     }
 
-    @RequestMapping(value = "/find/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/find/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    LessonItemDTO findById(@PathVariable Long id) throws NotFoundException {
+    LessonItemDTO findById(@PathVariable Long id){
         return lessonItemService.findById(id);
     }
-
-//    @RequestMapping(value = "/finishLessonItem", method = RequestMethod.POST)
-//    void setStatusForLessonItem(@RequestBody final Long lessonItemId) {
-//        userToCourseHierarchyObjectAggregationService.setStatusForLessonItem(lessonItemId, getUserId());
-//    }
 }

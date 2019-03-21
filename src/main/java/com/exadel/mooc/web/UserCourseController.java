@@ -17,16 +17,16 @@ public class UserCourseController {
     private IUserCourseService userCourseService;
 
 
-    @RequestMapping(value = "/specific-course",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/specific-course", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     List<UserCourseDTO> findCourseByUserIdAndCourseId(@RequestParam("courseId") Long courseId,
                                                       @RequestParam("userId") Long userId) {
         return userCourseService.findByUserIdAndCourseId(userId, courseId);
     }
 
-    @RequestMapping(value = "/all-courses",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all-courses", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    List<UserCourseDTO> findByUserId(@RequestParam("userId") Long userId){
+    List<UserCourseDTO> findByUserId(@RequestParam("userId") Long userId) {
         return userCourseService.findByUserId(userId);
     }
 }
