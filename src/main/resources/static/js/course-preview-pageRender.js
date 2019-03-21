@@ -13,11 +13,11 @@ function json(response) {
 let courseIdParam = new URL(window.location.href).search;
 
 
-fetch('http://localhost:8095/module/find' + courseIdParam)
+fetch('/module/find' + courseIdParam)
     .then(status)
     .then(json)
     .then(function (data) {
-        fetch('http://localhost:8095/course/find' + courseIdParam)
+        fetch('/course/find' + courseIdParam)
             .then(status)
             .then(json)
             .then(function (data) {

@@ -10,11 +10,11 @@ function json(response) {
     return response.json()
 }
 
-fetch('http://localhost:8095/user/get-user-info')
+fetch('/user/get-user-info')
     .then(status)
     .then(json)
     .then(function (data) {
-        fetch('http://localhost:8095/user-to-course/all-courses?userId=' + data.id)
+        fetch('/user-to-course/all-courses?userId=' + data.id)
             .then(status)
             .then(json)
             .then(function (data) {

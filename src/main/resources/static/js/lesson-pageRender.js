@@ -12,7 +12,7 @@ function json(response) {
 
 let moduleIdParam = new URL(window.location.href).search;
 
-fetch('http://localhost:8095/static-info/module-info/' + moduleIdParam)
+fetch('/static-info/module-info/' + moduleIdParam)
     .then(status)
     .then(json)
     .then(function (data) {
@@ -41,7 +41,7 @@ function drawLessonAndLessonItemList(jsonData) {
             let lessonStatus = document.createElement('i');
             lessonStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
             lessonListItem.appendChild(lessonStatus);
-        } else if (lesson.status === "in_progress") {
+        } else if (lesson.status === "IN_PROGRESS") {
             let lessonStatus = document.createElement('i');
             lessonStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
             lessonListItem.appendChild(lessonStatus);
@@ -62,7 +62,7 @@ function drawLessonAndLessonItemList(jsonData) {
             lessonItemListItem.innerText = lessonItem.name;
             lessonItemList.appendChild(lessonItemListItem);
 
-            if (lessonItem.status === 'finished') {
+            if (lessonItem.status === 'FINISHED') {
                 let lessonItemStatus = document.createElement('i');
                 lessonItemStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
                 lessonItemListItem.appendChild(lessonItemStatus);
@@ -83,7 +83,7 @@ function markAsActive(button) {
 
 function getLessonItemInfo(button) {
     let lessonItemId = button.id.split('-')[0];
-    fetch('http://localhost:8095/lesson-item/find/' + lessonItemId)
+    fetch('/lesson-item/find/' + lessonItemId)
         .then(status)
         .then(json)
         .then(function (data) {
@@ -123,7 +123,7 @@ function drawLessonItemContent(jsonData, lessonItemId) {
 
 function setStatusForLessonItem(button) {
     let lessonItemId = button.id;
-    fetch('http://localhost:8095/user-to-lesson-item/setLessonItemStatus', {
+    fetch('/user-to-lesson-item/setLessonItemStatus', {
         method: 'post',
         headers: {
             "Content-Type": "application/json",

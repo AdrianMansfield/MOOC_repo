@@ -13,20 +13,17 @@ function json(response) {
 let isAuth;
 
 
-fetch('http://localhost:8095/security/isAnonymous')
+fetch('/security/isAnonymous')
     .then(status)
     .then(json)
     .then(function (data) {
-        if (data === true) {
-            isAuth = false;
-        } else
-            isAuth = true;
+        isAuth = data !== true;
     }).catch(function (error) {
     console.log(error);
 });
 
 
-fetch('http://localhost:8095/course/three-latest')
+fetch('/course/three-latest')
     .then(status)
     .then(json)
     .then(function (data) {

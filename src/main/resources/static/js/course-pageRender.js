@@ -14,7 +14,7 @@ let courseIdParam = new URL(window.location.href).search;
 let courseId = new URL(window.location.href).searchParams.get('courseId');
 
 
-fetch('http://localhost:8095/static-info/course-info' + courseIdParam)
+fetch('/static-info/course-info' + courseIdParam)
     .then(status)
     .then(json)
     .then(function (data) {
@@ -35,9 +35,9 @@ function drawCourseTitleAndAuthor(jsonData) {
     courseAuthor.innerText = jsonData.creator.userName;
     let courseStatus = document.createElement('i');
     courseStatus.setAttribute('id', 'courseStatusIcon');
-    if (jsonData.status === 'finished') {
+    if (jsonData.status === 'FINISHED') {
         courseStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
-    } else if (jsonData.status === "not_started") {
+    } else if (jsonData.status === "NOT_STARTED") {
         courseStatus.classList.add('fas', 'fa-circle', 'not-started', 'ml-1');
     } else {
         courseStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
@@ -62,9 +62,9 @@ function drawCurrentCourseModule(jsonData) {
         cardTitle.innerText = module.title;
         cardBody.appendChild(cardTitle);
         let moduleStatus = document.createElement('i');
-        if (module.status === 'finished') {
+        if (module.status === 'FINISHED') {
             moduleStatus.classList.add('fas', 'fa-circle', 'finished', 'ml-1');
-        } else if (module.status === "not_started") {
+        } else if (module.status === "NOT_STARTED") {
             moduleStatus.classList.add('fas', 'fa-circle', 'not-started', 'ml-1');
         } else {
             moduleStatus.classList.add('fas', 'fa-circle', 'in-progress', 'ml-1');
@@ -85,7 +85,7 @@ function drawCurrentCourseModule(jsonData) {
 
 
 function subscribeToCourse() {
-    fetch('http://localhost:8095/course-actions/subscribe', {
+    fetch('/course-actions/subscribe', {
         method: 'post',
         headers: {
             "Content-Type": "application/json",
