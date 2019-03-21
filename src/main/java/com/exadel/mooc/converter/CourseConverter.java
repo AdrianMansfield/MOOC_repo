@@ -5,16 +5,19 @@ import com.exadel.mooc.dto.UserForViewDTO;
 import com.exadel.mooc.entity.Course;
 import com.exadel.mooc.exception.EntityNotFoundException;
 import com.exadel.mooc.repository.IUserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class CourseConverter {
 
     @Autowired
     private IUserRepository userRepository;
 
     public Course toEntity(CourseDTO courseDTO) {
+        log.info("Convert CourseDTO {} to entity", courseDTO);
         return Course.builder()
                 .title(courseDTO.getTitle())
                 .creator(userRepository.findByUserName(courseDTO.getCreator().getUserName())
@@ -23,6 +26,7 @@ public class CourseConverter {
     }
 
     public CourseDTO toDTO(Course course) {
+        log.info("Convert Course {} to DTO", course);
         return CourseDTO.builder()
                 .title(course.getTitle())
                 .creator(UserForViewDTO.builder()

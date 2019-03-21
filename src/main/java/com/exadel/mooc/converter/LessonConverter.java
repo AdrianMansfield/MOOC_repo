@@ -4,10 +4,12 @@ import com.exadel.mooc.dto.LessonDTO;
 import com.exadel.mooc.entity.Lesson;
 import com.exadel.mooc.exception.EntityNotFoundException;
 import com.exadel.mooc.repository.IModuleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class LessonConverter {
 
     @Autowired
@@ -15,6 +17,7 @@ public class LessonConverter {
 
 
     public Lesson toEntity(LessonDTO lessonDTO) {
+        log.info("Convert LessonDTO {} to entity", lessonDTO);
         return Lesson.builder()
                 .title(lessonDTO.getTitle())
                 .order(lessonDTO.getOrder())
@@ -24,6 +27,7 @@ public class LessonConverter {
     }
 
     public LessonDTO toDTO(Lesson lesson) {
+        log.info("Convert lesson {} to DTO", lesson);
         return LessonDTO.builder()
                 .title(lesson.getTitle())
                 .order(lesson.getOrder())

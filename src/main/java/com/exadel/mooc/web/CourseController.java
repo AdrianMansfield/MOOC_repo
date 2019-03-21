@@ -2,6 +2,9 @@ package com.exadel.mooc.web;
 
 import com.exadel.mooc.dto.CourseDTO;
 import com.exadel.mooc.service.ICourseService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/course")
+@Slf4j
 public class CourseController {
 
     @Autowired
@@ -40,6 +44,7 @@ public class CourseController {
     @GetMapping(value = "/three-latest", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     List<CourseDTO> getLatestRow() {
+        log.info("Example log from controller {}", 2 * 3);
         return courseService.findTop3ByOrderByIdDesc();
     }
 
