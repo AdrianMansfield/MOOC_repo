@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
+@Transactional
 public class CourseSubscriptionService implements ICourseSubscriptionService {
 
     @Autowired
     private IUserToCourseService userToCourseService;
 
     @Override
-    @Transactional
     public boolean subscribe(Long userId, Long courseId) {
         boolean result = true;
         if (userToCourseService.countAllByUserIdAndCourseId(userId, courseId) > 0) {

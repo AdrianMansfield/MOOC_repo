@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
+@Transactional
 public class UserToLessonService implements IUserToLessonService {
 
     @Autowired
@@ -22,13 +23,11 @@ public class UserToLessonService implements IUserToLessonService {
         return userToLessonRepository.countOfStartedLessons(lessonItemId, userId);
     }
 
-    @Transactional
     @Override
     public void updateStatusByUserIdAndLessonItemId(Long lessonItemId, Long userId) {
         userToLessonRepository.updateStatusByUserIdAndLessonItemId(lessonItemId, userId);
     }
 
-    @Transactional
     @Override
     public void setStatusInProgressByUserIdAndLessonItemId(Long lessonItemId, Long userId) {
         userToLessonRepository.setStatusInProgressByUserIdAndLessonItemId(lessonItemId, userId);

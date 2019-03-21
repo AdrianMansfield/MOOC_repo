@@ -1,12 +1,15 @@
 package com.exadel.mooc.service.linkagetable;
 
 import com.exadel.mooc.repository.linkagetable.IUserToLessonItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @Service
+@Transactional
+@Slf4j
 public class UserToLessonItemService implements IUserToLessonItemService {
 
     @Autowired
@@ -22,14 +25,12 @@ public class UserToLessonItemService implements IUserToLessonItemService {
         return lessonItemRepository.countOfStartedLessonsItem(lessonItemId, userId);
     }
 
-    @Transactional
     @Override
     public void setStatusFinishedByUserIdAndLessonItemId(Long lessonItemId, Long userId) {
         if (!lessonItemRepository.findByUserIdAndLessonItemId(userId, lessonItemId).isPresent()) {
             lessonItemRepository.setStatusFinishedByUserIdAndLessonItemId(lessonItemId, userId);
         } else {
-            //типо логирование ошибки)
-            System.out.println("skip adding entity with userID=" + userId + " and lessonItemID=" + lessonItemId);
+            log.error("Skip adding entity with userId:{} and lessonItemId: {}", userId, lessonItemId);
         }
     }
 }
