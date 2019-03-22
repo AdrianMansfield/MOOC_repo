@@ -1,7 +1,6 @@
 package com.exadel.mooc.web;
 
 import com.exadel.mooc.dto.LessonItemDTO;
-import com.exadel.mooc.exception.EntityNotFoundException;
 import com.exadel.mooc.security.CustomUser;
 import com.exadel.mooc.service.ILessonItemService;
 import com.exadel.mooc.service.linkagetable.IUserToCourseHierarchyObjectAggregationService;
